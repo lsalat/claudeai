@@ -1,96 +1,160 @@
 COMICS SCOUT – ALL FINDINGS – 2026-11-08
-=========================================
-Sources: Bazoš (searched directly, 18:05), Aukro (searched through the desktop browser, 13:25),
-publisher shops mightyboys.cz and comicscentrum.cz (13:20).
-Aukro auctions show the current bid; "SE" = sběratelská (collector's) edition.
+=============================================
+Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Antikvariaty.cz, Arkham.
+Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks automated access), Facebook (excluded).
+Search noise removed. Prices as listed; Aukro prices may be current auction bids.
 
------------------------------------------
+---------------------------------------------
 1) KOLOSÁLNÍ CONAN (Comics Centrum)
------------------------------------------
-Publisher shop (comicscentrum.cz) – max. one colossal book per order
-  Král aquilonský   | 3 200 Kč | in stock | https://www.comicscentrum.cz/9788076520448001-kolosalni-conan-kral-aquilonsky-2?flypage=flypage_comics.tpl
-  Kapitán pirátů    | 3 600 Kč | in stock | https://www.comicscentrum.cz/97880765211621-kolosalni-conan-kapitan-piratu
-  Mstitel           | 3 600 Kč | in stock | https://www.comicscentrum.cz/97880765217421-kolosalni-conan-mstitel?flypage=flypage_comics.tpl
-  Vol. 1 and Z Cimerie – not sold by the publisher any more
+---------------------------------------------
+Bazoš (8)
+  Kolosální Conan, Král Aquilonský                           | 2 000 Kč     | Uherské Hradiště | 10.9. 2026 | https://knihy.bazos.cz/inzerat/223632719/kolosalni-conan-kral-aquilonsky.php
+  Kolosální Conan 3 - Král Aquilonský                        | 2 500 Kč     | Chrudim | 6.11. 2026         | https://knihy.bazos.cz/inzerat/226065964/kolosalni-conan-3-kral-aquilonsky.php
+  Kolosální Conan – Král Aquilonský                          | 2 600 Kč     | Brno | 31.10. 2026           | https://knihy.bazos.cz/inzerat/225801642/kolosalni-conan-kral-aquilonsky.php
+  Kolosální Conan z Cimmerie                                 | 10 000 Kč    | Praha 2 | 5.11. 2026         | https://knihy.bazos.cz/inzerat/226053915/kolosalni-conan-z-cimmerie.php
+  Kolosální Conan                                            | 37 000 Kč    | Praha 2 | 5.11. 2026         | https://knihy.bazos.cz/inzerat/226053878/kolosalni-conan.php
+  Kolosální Conan                                            | 45 000 Kč    | Liberec | 28.10. 2026        | https://knihy.bazos.cz/inzerat/225677484/kolosalni-conan.php
+  Kolosální Conan                                            | 50 000 Kč    | Ústí nad Orlicí | 28.10. 2026 | https://knihy.bazos.cz/inzerat/225682116/kolosalni-conan.php
+  Komiks Kolosální Conan, král aquilonský - Timothy Truman   | V textu      | Praha 1 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224809112/komiks-kolosalni-conan-kral-aquilonsky-timothy-truman.php
 
-Bazoš
-  Kolosální Conan (vol. 1)          | 37 000 Kč | Praha 2           | 5.11.2026  | https://knihy.bazos.cz/inzerat/226053878/kolosalni-conan.php
-  Kolosální Conan (vol. 1)          | 45 000 Kč | Liberec           | 28.10.2026 | https://knihy.bazos.cz/inzerat/225677484/kolosalni-conan.php
-  Kolosální Conan (vol. 1)          | 50 000 Kč | Ústí nad Orlicí   | 28.10.2026 | https://knihy.bazos.cz/inzerat/225682116/kolosalni-conan.php
-  Kolosální Conan z Cimmerie        | 10 000 Kč | Praha 2           | 5.11.2026  | https://knihy.bazos.cz/inzerat/226053915/kolosalni-conan-z-cimmerie.php
-  Král Aquilonský                   |  2 000 Kč | Uherské Hradiště  | 10.9.2026  | https://knihy.bazos.cz/inzerat/223632719/kolosalni-conan-kral-aquilonsky.php
-  Král Aquilonský (new, foil torn)  |  2 500 Kč | Chrudim           | 6.11.2026  | https://knihy.bazos.cz/inzerat/226065964/kolosalni-conan-3-kral-aquilonsky.php
-  Král Aquilonský                   |  2 600 Kč | Brno              | 31.10.2026 | https://knihy.bazos.cz/inzerat/225801642/kolosalni-conan-kral-aquilonsky.php
-  Král aquilonský                   | in text   | Praha 1           | 8.10.2026  | https://knihy.bazos.cz/inzerat/224809112/komiks-kolosalni-conan-kral-aquilonsky-timothy-truman.php
+Sbazar (2)
+  Kolosální Conan, král aquilonský - Comics Centrum          | 4 999 Kč     | Bory                         | https://www.sbazar.cz/inzerat/230755886-kolosalni-conan-kral-aquilonsky-comics-centrum
+  Lovci monster, Kolosální Conan,Temný elf atd               | Dohodou      | Chrudim                      | https://www.sbazar.cz/inzerat/233156211-lovci-monster-kolosalni-conantemny-elf-atd
 
-Aukro
-  Kolosální Conan (vol. 1)          | 16 000 Kč auction, ends ~12.11. | https://aukro.cz/kolosalni-conan-7140306744
-  Z Cimerie, new                    |  7 320 Kč Kup teď | https://aukro.cz/kolosalni-conan-z-cimerie-nova-robert-erwin-howard-7129793596
-  Z Cimerie, new sealed             | 11 990 Kč Kup teď | https://aukro.cz/kolosalni-conan-z-cimerie-timothy-truman-nova-zabalena-7139911989
-  Král aquilonský                   |  6 000 Kč Kup teď | https://aukro.cz/kolosalni-conan-kral-aquilonsky-7137693621
-  Mstitel                           |  3 999 Kč Kup teď | https://aukro.cz/kolosalni-conan-mstitel-van-lente-fred-2025-7139384722
+KomiksBazar (3)
+  KOLOSÁLNÍ CONAN - KRÁL AQUILONSKÝ                          | 2 890 CZK    |                              | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=8621
+  Kolosální Conan, král aquilonský                           | 4 500 CZK    | antiquarian shop foxbazar.cz | https://www.foxbazar.cz/p/kolosalni-conan-kral-aquilonsky/
+  Kolosální Conan                                            | 5 500 CZK    |                              | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=11234
 
------------------------------------------
+Arkham (shop) (4)
+  Kolosální Conan 2                                          | 3 500 Kč     | Vyprodáno                    | https://www.arkham.cz/kolosalni-conan-2/
+  Kolosální Conan 1                                          | 3 500 Kč     | Vyprodáno                    | https://www.arkham.cz/kolosalni-conan-1/
+  Kolosální Conan 5: Mstitel                                 | 3 500 Kč     | Vyprodáno                    | https://www.arkham.cz/kolosalni-conan-5--mstitel/
+  Kolosální Conan 3                                          | 3 900 Kč     | Vyprodáno                    | https://www.arkham.cz/kolosalni-conan-3/
+
+Aukro – found via KomiksBazar (4)
+  Kolosální Conan, král aquilonský                           | 6 000 CZK    |                              | https://www.aukro.cz/kolosalni-conan-kral-aquilonsky-7137693621
+  Kolosální Conan z Cimerie (NOVÁ) , Robert Erwin Howard     | 7 320 CZK    |                              | https://www.aukro.cz/kolosalni-conan-z-cimerie-nova-robert-erwin-howard-7129793596
+  Kolosální Conan z Cimerie , Timothy Truman , Nová, zabalen | 11 990 CZK   |                              | https://www.aukro.cz/kolosalni-conan-z-cimerie-timothy-truman-nova-zabalena-7139911989
+  Kolosální Conan                                            | 16 000 CZK   |                              | https://www.aukro.cz/kolosalni-conan-7140306744
+
+---------------------------------------------
 2) TALES FROM THE CRYPT
------------------------------------------
-Bazoš – nothing found
-Aukro – no comics (only an LP and a film soundtrack CD)
-New: Dark Horse "EC Archives: The Complete Tales from the Crypt", 1 032 pages, $149.99, out Oct/Nov 2026 (English)
-Czech shop: EC Archives Vol. 2 paperback, 627 Kč – https://www.knihydobrovsky.cz/kniha/the-ec-archives-tales-from-the-crypt-volume-2-803272407
+---------------------------------------------
+  Nothing found on any site.
 
------------------------------------------
+---------------------------------------------
 3) MIGHTY BOYS
------------------------------------------
-Publisher shop (mightyboys.cz)
-  Gideon Falls        | 1 960 Kč | pre-order, out in December
-  Ďábelská komedie    |   774 Kč | pre-order, out in December
-  Gideon + Komedie    | 2 466 Kč | bundle
-  Think Tank (club)   | 1 937 Kč | order by 15.1.2027, out Feb 2027
-  Desátek (club)      | 1 786 Kč | order by 15.1.2027, out Feb 2027
-  Ostrov miliardářů   |   832 Kč | last copies at selected bookshops
-  Sara                |   563 Kč | last copies at selected bookshops
-  Temná věda          | 2 893 Kč | last copies
-  All other titles sold out.
+---------------------------------------------
+Bazoš (20)
+  CZ comicsy Batman, Mighty Boys, Superman ad.               | 200 Kč       | Svitavy | 9.9. 2026          | https://knihy.bazos.cz/inzerat/223615814/cz-comicsy-batman-myty-superman-ad.php
+  Agent strachu, Mighty Boys, Přístav Země                   | 1 200 Kč     | Ostrava | 17.9. 2026         | https://knihy.bazos.cz/inzerat/223927699/agent-strachu-mighty-boys-pristav-zeme.php
+  Fialkov - OZVĚNY (Mighty Boys)                             | 1 600 Kč     | Chrudim | 6.11. 2026         | https://knihy.bazos.cz/inzerat/226065821/fialkov-ozveny-mighty-boys.php
+  Vesmír na tripu (sběratelská verze)                        | 2 200 Kč     | Praha 10 | 2.10. 2026        | https://knihy.bazos.cz/inzerat/224550079/vesmir-na-tripu-sberatelska-verze.php
+  3 x Mighty Boys (Ostrov miliardářů, Sara, Verdikt davu)    | 2 999 Kč     | Šumperk | 17.10. 2026        | https://knihy.bazos.cz/inzerat/225201836/3-x-mighty-boys-ostrov-miliardaru-sara-verdikt-davu.php
+  SVĚDECTVÍ (sběratelská verze)                              | 3 999 Kč     | Šumperk | 17.10. 2026        | https://knihy.bazos.cz/inzerat/225201120/svedectvi-sberatelska-verze.php
+  SVĚDECTVÍ (sběratelská verze) Mighty Boys                  | 4 444 Kč     | Praha 4 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224797387/svedectvi-sberatelska-verze-mighty-boys.php
+  Mighty boys - Dopis 44                                     | 4 950 Kč     | Ústí nad Orlicí | 8.10. 2026 | https://knihy.bazos.cz/inzerat/224825807/mighty-boys-dopis-44.php
+  Pan rosnička (sběratelská verze) Mighty Boys               | 4 999 Kč     | Praha 4 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224797367/pan-rosnicka-sberatelska-verze-mighty-boys.php
+  Osm miliard přání , běžná verze, Mighty Boys               | 7 999 Kč     | Praha 4 | 11.10. 2026        | https://knihy.bazos.cz/inzerat/224962529/osm-miliard-prani-bezna-verze-mighty-boys.php
+  Agent strachu , Mighty Boys                                | 9 999 Kč     | Praha 4 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224797355/agent-strachu-mighty-boys.php
+  Přístav Země / Zatmění (sběratelská verze) - Zack Kaplan   | 11 000 Kč    | Ostrava | 19.10. 2026        | https://knihy.bazos.cz/inzerat/225271551/pristav-zeme-zatmeni-sberatelska-verze-zack-kaplan.php
+  Agent strachu , SBĚRATELSKÁ verze, Mighty Boys             | 11 111 Kč    | Praha 4 | 5.11. 2026         | https://knihy.bazos.cz/inzerat/226053404/agent-strachu-sberatelska-verze-mighty-boys.php
+  Přístav země/ Zatmění , SBĚRATELSKÁ verze, Mighty Boys     | 12 222 Kč    | Praha 4 | 5.11. 2026         | https://knihy.bazos.cz/inzerat/226053189/agent-strachu-sberatelska-verze-mighty-boys.php
+  Přístav Země / Zatmění SE - Zack Kaplan (NOVÝ)             | 14 000 Kč    | Praha 7 | 1.11. 2026         | https://knihy.bazos.cz/inzerat/225833092/pristav-zeme-zatmeni-se-zack-kaplan-novy.php
+  CZ komiks kniha: Zack Kaplan - Přístav Země / Zatmění - NO | 16 500 Kč    | Cheb | 31.10. 2026           | https://knihy.bazos.cz/inzerat/225795741/cz-komiks-kniha-zack-kaplan-pristav-zeme-zatmeni-nove.php
+  Přístav země/ Zatmění , Zack Kaplan , Mighty Boys          | 19 999 Kč    | Praha 4 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224797382/pristav-zeme-zatmeni-zack-kaplan-mighty-boys.php
+  Přístav země/ Zatmění , SE , Zack Kaplan , Mighty Boys     | 19 999 Kč    | Praha 4 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224797376/pristav-zeme-zatmeni-se-zack-kaplan-mighty-boys.php
+  Matka, Mighty Boys, obyčejná verze                         | Dohodou      | Praha 4 | 17.10. 2026        | https://knihy.bazos.cz/inzerat/225221701/matka-mighty-boys-obycejna-verze.php
+  Osm miliard přání (sběratelská verze) Mighty Boys          | Dohodou      | Praha 4 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224797392/osm-miliard-prani-sberatelska-verze-mighty-boys.php
 
-Bazoš
-  Ozvěny                                    |  1 600 Kč | Chrudim          | https://knihy.bazos.cz/inzerat/226065821/fialkov-ozveny-mighty-boys.php
-  Vesmír na tripu SE                        |  2 200 Kč | Praha 10         | https://knihy.bazos.cz/inzerat/224550079/vesmir-na-tripu-sberatelska-verze.php
-  Ostrov miliardářů + Sara + Verdikt davu   |  2 999 Kč | Šumperk          | https://knihy.bazos.cz/inzerat/225201836/3-x-mighty-boys-ostrov-miliardaru-sara-verdikt-davu.php
-  Svědectví SE                              |  3 999 Kč | Šumperk          | https://knihy.bazos.cz/inzerat/225201120/svedectvi-sberatelska-verze.php
-  Svědectví SE                              |  4 444 Kč | Praha 4          | https://knihy.bazos.cz/inzerat/224797387/svedectvi-sberatelska-verze-mighty-boys.php
-  Dopis 44                                  |  4 950 Kč | Ústí nad Orlicí  | https://knihy.bazos.cz/inzerat/224825807/mighty-boys-dopis-44.php
-  Pan rosnička SE                           |  4 999 Kč | Praha 4          | https://knihy.bazos.cz/inzerat/224797367/pan-rosnicka-sberatelska-verze-mighty-boys.php
-  Osm miliard přání (běžná)                 |  7 999 Kč | Praha 4          | https://knihy.bazos.cz/inzerat/224962529/osm-miliard-prani-bezna-verze-mighty-boys.php
-  Osm miliard přání SE                      | dohodou   | Praha 4          | https://knihy.bazos.cz/inzerat/224797392/osm-miliard-prani-sberatelska-verze-mighty-boys.php
-  Matka (běžná)                             | dohodou   | Praha 4          | https://knihy.bazos.cz/inzerat/225221701/matka-mighty-boys-obycejna-verze.php
-  Agent strachu                             |  9 999 Kč | Praha 4          | https://knihy.bazos.cz/inzerat/224797355/agent-strachu-mighty-boys.php
-  Agent strachu SE                          | 11 111 Kč | Praha 4          | https://knihy.bazos.cz/inzerat/226053404/agent-strachu-sberatelska-verze-mighty-boys.php
-  Přístav Země / Zatmění SE                 | 11 000 Kč | Ostrava          | https://knihy.bazos.cz/inzerat/225271551/pristav-zeme-zatmeni-sberatelska-verze-zack-kaplan.php
-  Přístav Země / Zatmění SE                 | 12 222 Kč | Praha 4          | https://knihy.bazos.cz/inzerat/226053189/agent-strachu-sberatelska-verze-mighty-boys.php
-  Přístav Země / Zatmění SE (new)           | 14 000 Kč | Praha 7          | https://knihy.bazos.cz/inzerat/225833092/pristav-zeme-zatmeni-se-zack-kaplan-novy.php
-  Přístav Země / Zatmění (new)              | 16 500 Kč | Cheb             | https://knihy.bazos.cz/inzerat/225795741/cz-komiks-kniha-zack-kaplan-pristav-zeme-zatmeni-nove.php
-  Přístav Země / Zatmění                    | 19 999 Kč | Praha 4          | https://knihy.bazos.cz/inzerat/224797382/pristav-zeme-zatmeni-zack-kaplan-mighty-boys.php
-  Přístav Země / Zatmění SE                 | 19 999 Kč | Praha 4          | https://knihy.bazos.cz/inzerat/224797376/pristav-zeme-zatmeni-se-zack-kaplan-mighty-boys.php
-  CHECK: "Agent strachu, Přístav Země"      |  1 200 Kč | Ostrava          | https://knihy.bazos.cz/inzerat/223927699/agent-strachu-mighty-boys-pristav-zeme.php
-  Mixed CZ comics lot incl. Mighty Boys     |    200 Kč | Svitavy          | https://knihy.bazos.cz/inzerat/223615814/cz-comicsy-batman-myty-superman-ad.php
-  (Wanted ad – someone buying Mighty Boys)  | dohodou   | Liberec          | https://knihy.bazos.cz/inzerat/223934000/koupim-comics.php
+Sbazar (25)
+  Poslední Detektiv - Vykoupení ( Mighty Boys)               | 599 Kč       | Tanvald                      | https://www.sbazar.cz/inzerat/214402459-posledni-detektiv-vykoupeni-mighty-boys
+  Sestiprstak - Mighty Boys / obyčejná verze                 | 1 499 Kč     | Tanvald                      | https://www.sbazar.cz/inzerat/225799159-sestiprstak-mighty-boys-obycejna-verze
+  Komiks Dopis 44 od Mighty boys, Kniha hřbitovní            | 1 500 Kč     | Ústí nad Orlicí              | https://www.sbazar.cz/inzerat/235661376-komiks-dopis-44-od-mighty-boys-kniha-hrbitovni
+  Cesta na Mars - Mighty Boys                                | 1 599 Kč     | Bory, Horní Bory             | https://www.sbazar.cz/inzerat/231058265-cesta-na-mars-mighty-boys
+  Cesta na Mars, běžná verze, Mighty Boys                    | 1 999 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/220151102-cesta-na-mars-bezna-verze-mighty-boys
+  Vesmír na tripu (sběratelská verze)                        | 2 200 Kč     | Praha, Horní Měcholupy       | https://www.sbazar.cz/inzerat/229333943-vesmir-na-tripu-sberatelska-verze
+  Vesmír na tripu - Mighty Boys / Sběratelská edice          | 2 299 Kč     | Tanvald                      | https://www.sbazar.cz/inzerat/221906042-vesmir-na-tripu-mighty-boys-sberatelska-edice
+  Cesta na Mars , Sběratelská edice , Mighty Boys            | 2 999 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/222503924-cesta-na-mars-sberatelska-edice-mighty-boys
+  Vesmír na Tripu SE, + Pouto smrti , Mighty Boys            | 2 999 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/222290801-vesmir-na-tripu-se-pouto-smrti-mighty-boys
+  Ozvěny - sběratelská verze , Mighty Boys                   | 3 333 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/220151276-ozveny-sberatelska-verze-mighty-boys
+  Pan rosnička (sběratelská verze) Mighty Boys               | 3 999 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/225323218-pan-rosnicka-sberatelska-verze-mighty-boys
+  SVĚDECTVÍ (sběratelská verze) Mighty Boys                  | 4 444 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/225789577-svedectvi-sberatelska-verze-mighty-boys
+  Svědectví (sběratelská verze) - Mighty Boys                | 4 990 Kč     | Bory                         | https://www.sbazar.cz/inzerat/225904825-svedectvi-sberatelska-verze-mighty-boys
+  Zpěv Neznáma (sběratelská verze) - Mighty Boys             | 4 999 Kč     | Bory                         | https://www.sbazar.cz/inzerat/230755247-zpev-neznama-sberatelska-verze-mighty-boys
+  Zpěv Neznáma, běžná verze, Mighty Boys                     | 5 555 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/220151009-zpev-neznama-bezna-verze-mighty-boys
+  Temná věda (SE) , Rick Remender , Mighty Boys              | 5 999 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/233042001-temna-veda-se-rick-remender-mighty-boys
+  Pošťák , Sběratelská verze , Mighty Boys                   | 6 666 Kč     | Praha                        | https://www.sbazar.cz/inzerat/235490742-postak-sberatelska-verze-mighty-boys
+  Agent Strachu , Mighty Boys                                | 6 999 Kč     | Praha                        | https://www.sbazar.cz/inzerat/209208865-agent-strachu-mighty-boys
+  Osm miliard přání , běžná verze, Mighty Boys               | 6 999 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/234802899-osm-miliard-prani-bezna-verze-mighty-boys
+  Tulák SE , Mighty Boys , Iván Brandon                      | 7 999 Kč     | Praha                        | https://www.sbazar.cz/inzerat/215478115-tulak-se-mighty-boys-ivan-brandon
+  Dopis 44 , Mighty Boys , běžná verze                       | 7 999 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/211980163-dopis-44-mighty-boys-bezna-verze
+  Tulák , základní verze, Mighty Boys , Iván Brandon         | 9 999 Kč     | Praha, Libuš                 | https://www.sbazar.cz/inzerat/233044293-tulak-zakladni-verze-mighty-boys-ivan-brandon
+  Agent strachu , SBĚRATELSKÁ verze, Mighty Boys             | 11 111 Kč    | Praha, Libuš                 | https://www.sbazar.cz/inzerat/235582719-agent-strachu-sberatelska-verze-mighty-boys
+  Přístav země/Zatmění,SBĚRATELSKÁ verze,Mighty Boys         | 12 222 Kč    | Praha, Libuš                 | https://www.sbazar.cz/inzerat/235582221-pristav-zemezatmenisberatelska-verzemighty-boys
+  Přístav země/ Zatmění , Mighty Boys                        | 19 999 Kč    | Praha, Libuš                 | https://www.sbazar.cz/inzerat/225630133-pristav-zeme-zatmeni-mighty-boys
 
-Aukro
-  Ozvěny SE sealed            |  2 037 Kč auction, ends ~9.11. | https://aukro.cz/ozveny-mighty-boys-sberatelska-zabalena-7139877990
-  Cesta kostí SE sealed       |  2 406 Kč auction, ends ~9.11. | https://aukro.cz/cesta-kosti-sberatelska-mighty-boys-zabalena-7139877911
-  Šestiprsťák (sealed)        |  1 499 Kč | https://aukro.cz/sestiprstak-ve-folii-mighty-boys-standartni-verze-7136228291
-  Šestiprsťák SE              |  1 999 Kč | https://aukro.cz/sestiprstak-mighty-boys-sberatelska-edice-7115776003
-  Pouto smrti                 |  1 399 Kč | https://aukro.cz/pouto-smrti-mighty-boys-7135803893
-  Vesmír na tripu SE          |  2 499 Kč | https://aukro.cz/vesmir-na-tripu-mighty-boys-sberatelska-edice-7125734196
-  Matka                       |  2 499 Kč | https://aukro.cz/matka-mighty-boys-7113350944
-  Cesta na Mars SE            |  3 333 Kč | https://aukro.cz/cesta-na-mars-sberatelska-verze-mighty-boys-7117119266
-  Agent strachu               |  3 666 Kč | https://aukro.cz/agent-strachu-rick-remender-tony-moore-jerome-open-rick-remender-7122764034
-  Agent strachu (new)         |  4 200 Kč | https://aukro.cz/agent-strachu-rick-remender-bezna-verze-mighty-boys-nova-7140086688
-  Zpěv Neznáma                |  4 999 Kč | https://aukro.cz/zpev-neznama-mighty-boys-7113351997
-  Temná věda SE               |  5 500 Kč | https://aukro.cz/temna-veda-sberatelska-verze-rick-remender-mighty-boys-comics-7133163960
-  Osm miliard přání (běžná)   |  5 999 Kč | https://aukro.cz/osm-miliard-prani-bezna-verze-mighty-boys-7137139775
-  Dopis 44                    |  6 666 Kč | https://aukro.cz/dopis-44-mighty-boys-7115683229
-  Pošťák SE                   |  6 666 Kč | https://aukro.cz/postak-sberatelska-verze-mighty-boys-7139914711
-  Kletba                      |  6 999 Kč | https://aukro.cz/kletba-mighty-boys-7113351731
-  Tulák SE                    |  6 999 Kč | https://aukro.cz/tulak-sberatelska-edice-mighty-boys-7113351404
-  Přístav Země / Zatmění SE   | 14 999 Kč | https://aukro.cz/pristav-zeme-zatmeni-zack-kaplan-sberatelska-verze-mighty-boys-7140343753
+KomiksBazar (1)
+  Šestiprsťák / Ruka (sběratelská edice)                     | 1 200 CZK    |                              | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=11217
+
+Arkham (shop) (21)
+  Poslední detektiv: Vykoupení                               | 328 Kč       | Vyprodáno                    | https://www.arkham.cz/posledni-detektiv--vykoupeni/
+  Cesta kostí                                                | 444 Kč       | Momentálně nedostupné        | https://www.arkham.cz/cesta-kosti/
+  Ozvěny                                                     | 489 Kč       | Vyprodáno                    | https://www.arkham.cz/ozveny/
+  Trojka                                                     | 528 Kč       | Momentálně nedostupné        | https://www.arkham.cz/trojka/
+  Matka                                                      | 536 Kč       | Momentálně nedostupné        | https://www.arkham.cz/matka-2/
+  Sara                                                       | 613 Kč       | Skladem                      | https://www.arkham.cz/sara/
+  Osm miliard přání                                          | 715 Kč       | Vyprodáno                    | https://www.arkham.cz/osm-miliard-pranicesta-kosti/
+  Cesta na Mars                                              | 750 Kč       | Vyprodáno                    | https://www.arkham.cz/cesta-na-mars-2/
+  Šestiprsťák / Ruka                                         | 846 Kč       | Vyprodáno                    | https://www.arkham.cz/sestiprstak-ruka/
+  Ostrov miliardářů                                          | 882 Kč       | Skladem                      | https://www.arkham.cz/ostrov-miliardaru/
+  Tulák (komiks)                                             | 1 348 Kč     | Momentálně nedostupné        | https://www.arkham.cz/tulak--komiks/
+  Pan rosnička                                               | 1 732 Kč     | Vyprodáno                    | https://www.arkham.cz/pan-rosnicka/
+  Pošťák (komiks)                                            | 1 783 Kč     | Vyprodáno                    | https://www.arkham.cz/postak--komiks/
+  Vesmír na tripu                                            | 1 800 Kč     | Vyprodáno                    | https://www.arkham.cz/vesmir-na-tripu/
+  Kletba                                                     | 1 955 Kč     | Vyprodáno                    | https://www.arkham.cz/kletba-2/
+  Přístav Země / Zatmění                                     | 1 969 Kč     | Vyprodáno                    | https://www.arkham.cz/pristav-zeme-zatmeni/
+  Dopis 44                                                   | 2 087 Kč     | Momentálně nedostupné        | https://www.arkham.cz/dopis-44/
+  Svědectví Stephena Kinga                                   | 2 121 Kč     | Vyprodáno                    | https://www.arkham.cz/svedectvi-stephena-kinga/
+  Zpěv Neznáma                                               | 2 200 Kč     | Vyprodáno                    | https://www.arkham.cz/zpev-neznama/
+  Agent strachu                                              | 2 500 Kč     | Vyprodáno                    | https://www.arkham.cz/agent-strachu/
+  Vyvrhel                                                    | 2 750 Kč     | Vyprodáno                    | https://www.arkham.cz/vyvrhel/
+
+Aukro – found via KomiksBazar (19)
+  Verdikt davu (Mighty Boys)                                 | 599 CZK      |                              | https://www.aukro.cz/verdikt-davu-mighty-boys-7136793512
+  Ozvěny Mighty boys                                         | 700 CZK      |                              | https://www.aukro.cz/ozveny-mighty-boys-7140669319
+  Matka Mighty boys                                          | 1 000 CZK    |                              | https://www.aukro.cz/matka-mighty-boys-7140668159
+  Vesmír na tripu (sběratelská verze)                        | 2 000 CZK    |                              | https://www.aukro.cz/vesmir-na-tripu-sberatelska-verze-7115867466
+  OZVĚNY Mighty Boys sběratelská zabalená                    | 2 037 CZK    |                              | https://www.aukro.cz/ozveny-mighty-boys-sberatelska-zabalena-7139877990
+  Vesmír na tripu - sběratelská edice Mighty Boys            | 2 300 CZK    |                              | https://www.aukro.cz/vesmir-na-tripu-sberatelska-edice-mighty-boys-7104696284
+  Cesta kostí sběratelská Mighty Boys zabalená               | 2 406 CZK    |                              | https://www.aukro.cz/cesta-kosti-sberatelska-mighty-boys-zabalena-7139877911
+  Zpěv neznáma - standardní verze / Mighty Boys              | 3 150 CZK    |                              | https://www.aukro.cz/zpev-neznama-standardni-verze-mighty-boys-7139789122
+  Svědectví (sběratelská verze) Stephen King, Mighty Boys Co | 3 199 CZK    |                              | https://www.aukro.cz/svedectvi-sberatelska-verze-stephen-king-mighty-boys-comics-7133164455
+  Cesta na Mars (sběratelská verze) Mighty Boys              | 3 333 CZK    |                              | https://www.aukro.cz/cesta-na-mars-sberatelska-verze-mighty-boys-7117119266
+  Ozvěny - sběratelská verze , Mighty Boys                   | 3 999 CZK    |                              | https://www.aukro.cz/ozveny-sberatelska-verze-mighty-boys-7116899383
+  Agent strachu - Rick Remender (běžná verze) (Mighty Boys)  | 4 200 CZK    |                              | https://www.aukro.cz/agent-strachu-rick-remender-bezna-verze-mighty-boys-nova-7140086688
+  Temná věda (sběratelská verze) Rick Remender, Mighty Boys  | 5 500 CZK    |                              | https://www.aukro.cz/temna-veda-sberatelska-verze-rick-remender-mighty-boys-comics-7133163960
+  Osm miliard přání , běžná verze, Mighty Boys               | 5 999 CZK    |                              | https://www.aukro.cz/osm-miliard-prani-bezna-verze-mighty-boys-7137139775
+  Temná věda (sběratelská verze) , Rick Remender , Mighty Bo | 7 999 CZK    |                              | https://www.aukro.cz/temna-veda-sberatelska-verze-rick-remender-mighty-boys-7129675853
+  Tulák , základní verze, Mighty Boys , Iván Brandon         | 9 999 CZK    |                              | https://www.aukro.cz/tulak-zakladni-verze-mighty-boys-ivan-brandon-7133163027
+  Komiks Přístav Země / Zatmění (Zack Kaplan) - limitka      | 17 990 CZK   |                              | https://www.aukro.cz/komiks-pristav-zeme-zatmeni-zack-kaplan-limitka-7120814065
+  Přístav země/ Zatmění , Zack Kaplan , Mighty Boys          | 19 999 CZK   |                              | https://www.aukro.cz/pristav-zeme-zatmeni-zack-kaplan-mighty-boys-7114246244
+  Přístav země/ Zatmění , Zack Kaplan , Mighty Boys          | 19 999 CZK   |                              | https://www.aukro.cz/pristav-zeme-zatmeni-zack-kaplan-mighty-boys-7114361596
+
+---------------------------------------------
+WANTED ADS (people looking to BUY these – possible buyers if you sell)
+---------------------------------------------
+  [Bazoš] Koupím comicsy MDEK,Mighty Boys,Aargh,Murin Wolf | https://knihy.bazos.cz/inzerat/223934000/koupim-comics.php
+  [KomiksBazar] Kolosální Conan | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=9382
+  [KomiksBazar] MDEK,Murin Wolf,Conan,Aargh,Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=4834
+  [KomiksBazar] Tulák , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10631
+  [KomiksBazar] Tulák (sběratelská varianta) , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10634
+  [KomiksBazar] Trojka , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10637
+  [KomiksBazar] Trojka (sběratelská verze) , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10636
+  [KomiksBazar] Přístav Země / Zatmění , Zack Kaplan , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=9417
+  [KomiksBazar] Přístav Země / Zatmění , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10638
+  [KomiksBazar] Pošťák (sběratelská verze) , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10635
+  [KomiksBazar] Osm miliard přání , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10630
+  [KomiksBazar] Dopis 44 , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10641
+  [KomiksBazar] Matka , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10633
