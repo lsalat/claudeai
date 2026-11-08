@@ -24,6 +24,11 @@ The full procedure the task follows is in `SKILL.md`.
 | Bazoš | General classifieds | ✅ searched |
 | Sbazar | Seznam's classifieds | ✅ searched |
 | KomiksBazar | Comics collectors' ads + offers from antiquarian shops (incl. many **Aukro** listings) | ✅ searched |
+| Trh knih | Online antiquarian marketplace (shows the lowest current offer per book) | ✅ searched |
+| Restorio | Second-hand bookshop (only copies in stock are reported) | ✅ searched via its Doofinder search |
+| Knihobot | Second-hand bookshop (only copies in stock) | ✅ searched via its own JSON search |
+| Reknihy | Second-hand bookshop (only copies in stock) | ✅ searched via its Luigi's Box search |
+| Antikavion | Antiquarian bookshop (only books with a copy for sale) | ✅ searched |
 | Antikvariaty.cz | Antiquarian bookshop catalogue | ✅ searched (rarely has these titles) |
 | Arkham | Comics bookshop (new + second-hand) | ✅ searched |
 | mightyboys.cz, comicscentrum.cz | Publishers | ✅ checked |

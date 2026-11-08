@@ -16,7 +16,7 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
 
 2. **Search all sites** (takes about 2 minutes – give the command a 10-minute timeout):
    `python3 scout.py --terms search-terms.txt > /tmp/results.json`
-   - Sites: Bazoš, Sbazar, KomiksBazar (collector ads + antiquarian offers, which also include many **Aukro** listings), Antikvariaty.cz, Arkham.
+   - Sites: Bazoš, Sbazar, KomiksBazar (collector ads + antiquarian offers, which also include many **Aukro** listings), Trh knih, Knihobot, Reknihy, Restorio, Antikavion, Antikvariaty.cz, Arkham.
    - Each site pauses 2–6 s between requests and stops at its first error/block. Exit code 2 means at least one site stopped – check the `status` field per site and report it. Never retry a blocked site.
 
 3. **Publisher shops** (WebFetch):
