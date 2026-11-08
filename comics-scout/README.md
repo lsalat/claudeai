@@ -24,11 +24,16 @@ The full procedure the task follows is in `SKILL.md`.
 | Bazoš | General classifieds | ✅ searched |
 | Sbazar | Seznam's classifieds | ✅ searched |
 | KomiksBazar | Comics collectors' ads + offers from antiquarian shops (incl. many **Aukro** listings) | ✅ searched |
+| Trh knih | Online antiquarian marketplace (shows the lowest current offer per book) | ✅ searched |
+| Restorio | Second-hand bookshop (only copies in stock are reported) | ✅ searched via its Doofinder search |
 | Antikvariaty.cz | Antiquarian bookshop catalogue | ✅ searched (rarely has these titles) |
 | Arkham | Comics bookshop (new + second-hand) | ✅ searched |
 | mightyboys.cz, comicscentrum.cz | Publishers | ✅ checked |
 | Aukro (directly) | Auctions | ❌ Cloudflare blocks cloud requests – partly covered via KomiksBazar |
 | ComicsDB Bazar | Community bazaar | ❌ blocks automated access |
+| Knihobot | Second-hand bookshop | ⏳ search runs on `*.bookbot.com` – needs that domain allowed |
+| Reknihy | Second-hand bookshop | ⏳ search runs on `*.luigisbox.com` – needs that domain allowed |
+| Antikavion | Antiquarian bookshop | ⏳ still blocked by network settings |
 | Facebook Marketplace | – | excluded |
 
 All searching is polite: one request per term per site, 2–6 s pauses, sites searched in parallel, and a site stops at its first error or block (never retried). Note: these sites' robots.txt files ask automated tools not to search; the owner of this repo chose to search them anyway at this low volume.

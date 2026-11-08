@@ -148,7 +148,51 @@ def arkham(term):
     return out, code
 
 
-SITES = {"bazos": bazos, "sbazar": sbazar, "komiksbazar": komiksbazar,
+def trhknih(term):
+    """Trh knih – one entry per book with the lowest current price; books without offers are skipped."""
+    url = f"https://www.trhknih.cz/hledat?q={q(term)}"
+    body, code = fetch(url)
+    if body is None:
+        return None, code
+    out = []
+    for blk in body.split('<div class="row serp-item">')[1:]:
+        p = re.search(r'<div class="span6">\s*<p>(.*?)</p>', blk, re.S)
+        a = re.search(r'<a href="(/kniha/[^"]+)">(.*?)</a>', blk, re.S)
+        price = re.search(r'ask-count[^>]*>(.*?)</span>', blk, re.S)
+        if not (p and a and price):
+            continue
+        lines = [clean(x) for x in re.split(r"<br\s*/?>", p.group(1))]
+        title = " – ".join(x for x in lines[:2] if x and "Kč" not in x)
+        year = re.search(r"<em>(\d{4})</em>", blk)
+        out.append({"title": title, "price": "from " + clean(price.group(1)), "place": "",
+                    "date": year.group(1) if year else "", "note": "lowest offer",
+                    "url": "https://www.trhknih.cz" + a.group(1)})
+    return out, code
+
+
+RESTORIO_HASHID = "e08b0ecc3b5a2e10a31665511853935a"  # Restorio's public Doofinder search ID (from its website)
+
+
+def restorio(term):
+    """Restorio – second-hand bookshop; its search runs through Doofinder's JSON API."""
+    url = f"https://eu1-search.doofinder.com/6/{RESTORIO_HASHID}/_search?query={q(term)}&rpp=50"
+    r = subprocess.run(["curl", "-sS", "-m", "30", "-A", UA, "-H", "Origin: https://www.restorio.cz",
+                        "-w", "\n%{http_code}", url], capture_output=True, text=True, errors="replace")
+    body, _, code = r.stdout.rpartition("\n")
+    if code != "200":
+        return None, code or r.stderr.strip()[:120]
+    out = []
+    for it in json.loads(body).get("results", []):
+        price = it.get("best_price") or it.get("price")
+        if not price or it.get("fskladem") == "ne":  # catalogue entry without a copy for sale
+            continue
+        out.append({"title": clean(it.get("title", "")), "price": f"{price:.0f} Kč",
+                    "place": "", "date": str(it.get("doo_rok") or ""), "note": "in stock",
+                    "url": it.get("link", "")})
+    return out, code
+
+
+SITES = {"trhknih": trhknih, "restorio": restorio, "bazos": bazos, "sbazar": sbazar, "komiksbazar": komiksbazar,
          "antikvariaty": antikvariaty, "arkham": arkham}
 
 

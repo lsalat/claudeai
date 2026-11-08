@@ -1,7 +1,7 @@
 COMICS SCOUT – ALL FINDINGS – 2026-11-08
 =============================================
-Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Antikvariaty.cz, Arkham.
-Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks automated access), Facebook (excluded).
+Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Trh knih, Restorio, Antikvariaty.cz, Arkham.
+Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks bots), Knihobot, Reknihy and Antikavion (blocked by network settings), Facebook (excluded).
 Search noise removed. Prices as listed; Aukro prices may be current auction bids.
 
 ---------------------------------------------
@@ -25,6 +25,10 @@ KomiksBazar (3)
   KOLOSÁLNÍ CONAN - KRÁL AQUILONSKÝ                          | 2 890 CZK    |                              | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=8621
   Kolosální Conan, král aquilonský                           | 4 500 CZK    | antiquarian shop foxbazar.cz | https://www.foxbazar.cz/p/kolosalni-conan-kral-aquilonsky/
   Kolosální Conan                                            | 5 500 CZK    |                              | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=11234
+
+Trh knih (2)
+  Kolosální Conan – 3. - král aquilonský                     | from 3000 Kč | 2021 | lowest offer          | https://www.trhknih.cz/kniha/l0v7n6qb8v23
+  Kolosální Conan z Cimerie                                  | from 9650 Kč | 2019 | lowest offer          | https://www.trhknih.cz/kniha/26um4dd4ze
 
 Arkham (shop) (4)
   Kolosální Conan 2                                          | 3 500 Kč     | Vyprodáno                    | https://www.arkham.cz/kolosalni-conan-2/
