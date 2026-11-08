@@ -1,8 +1,8 @@
 # Comics scout
 
-Daily search of Czech second-hand sites and publisher shops for three kinds of comics:
+Daily search of Czech second-hand sites and shops for three kinds of comics:
 
-1. **Mighty Boys** – every title from the Czech publisher Mighty Boys (normal and collector's editions)
+1. **Mighty Boys** – only *Přístav Země / Zatmění* and *Trojka* (normal and collector's editions)
 2. **Tales from the Crypt** – any edition
 3. **Kolosální Conan** – the big Comics Centrum hardcovers (vol. 1, z Cimerie, Král aquilonský, Kapitán pirátů, Mstitel, …)
 
@@ -10,26 +10,35 @@ Daily search of Czech second-hand sites and publisher shops for three kinds of c
 
 A scheduled Claude task ("Comics scout daily (cloud)") runs every morning at 6:43 Prague time, fully in the cloud – no computer needs to be on. Each run:
 
-1. Searches **Bazoš** with `bazos.py` using the terms in `search-terms.txt`.
-2. Checks the publisher shops **mightyboys.cz** and **comicscentrum.cz** for prices, stock and new titles.
-3. Writes **all findings** to a fresh file `history/listings-YYYY-MM-DD.txt` (no comparison with earlier days) and commits it to `main`.
+1. Searches all sites below with `scout.py`, using the terms in `search-terms.txt`.
+2. Checks the publisher shops **mightyboys.cz** and **comicscentrum.cz**.
+3. Builds a fresh file `history/listings-YYYY-MM-DD.txt` with **all findings** (no comparison with earlier days) using `report.py`, and commits it to `main`.
 4. Sends a short push summary.
 
 The full procedure the task follows is in `SKILL.md`.
 
-## Sites and their limits
+## Sites
 
-| Site | Status |
-|---|---|
-| Bazoš | Searched directly from the cloud. Polite: one request per term, 2–6 s pauses, stops at the first error/CAPTCHA. |
-| mightyboys.cz, comicscentrum.cz | Read directly. |
-| Aukro | **Not automated yet.** Its Cloudflare check blocks cloud requests. Options: Aukro email alerts ("Hlídací pes") read via Gmail, Apify scraper, or a small job on a home Raspberry Pi / Synology. |
+| Site | What it is | Status |
+|---|---|---|
+| Bazoš | General classifieds | ✅ searched |
+| Sbazar | Seznam's classifieds | ✅ searched |
+| KomiksBazar | Comics collectors' ads + offers from antiquarian shops (incl. many **Aukro** listings) | ✅ searched |
+| Antikvariaty.cz | Antiquarian bookshop catalogue | ✅ searched (rarely has these titles) |
+| Arkham | Comics bookshop (new + second-hand) | ✅ searched |
+| mightyboys.cz, comicscentrum.cz | Publishers | ✅ checked |
+| Aukro (directly) | Auctions | ❌ Cloudflare blocks cloud requests – partly covered via KomiksBazar |
+| ComicsDB Bazar | Community bazaar | ❌ blocks automated access |
+| Facebook Marketplace | – | excluded |
+
+All searching is polite: one request per term per site, 2–6 s pauses, sites searched in parallel, and a site stops at its first error or block (never retried). Note: these sites' robots.txt files ask automated tools not to search; the owner of this repo chose to search them anyway at this low volume.
 
 ## Files
 
 | File | What it is |
 |---|---|
-| `bazos.py` | Bazoš search script (Python 3, needs `curl`). Prints JSON. |
+| `scout.py` | Searches all sites, prints JSON. Python 3 + `curl`, no other packages. |
+| `report.py` | Turns the JSON into the readable daily file, removes known search noise. |
 | `search-terms.txt` | One search term per line – add a title here to include it. |
 | `SKILL.md` | Step-by-step instructions the daily task follows. |
 | `history/` | One text file per day with everything found. |
@@ -38,12 +47,14 @@ The full procedure the task follows is in `SKILL.md`.
 
 Linux / WSL / Raspberry Pi:
 ```bash
-python3 bazos.py --terms search-terms.txt > results.json
+python3 scout.py --terms search-terms.txt > results.json
+python3 report.py results.json history/listings-$(date +%F).txt
 ```
 
 Windows 11 (PowerShell; Python 3 installed, `curl` is built in):
 ```powershell
-py bazos.py --terms search-terms.txt > results.json
+py scout.py --terms search-terms.txt > results.json
+py report.py results.json "history/listings-$(Get-Date -Format yyyy-MM-dd).txt"
 ```
 
-Or search for single terms: `python3 bazos.py "kolosální conan" "mighty boys"`
+Only some sites or terms: `python3 scout.py "kolosální conan" --sites bazos,sbazar`
