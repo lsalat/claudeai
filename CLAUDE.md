@@ -21,6 +21,10 @@ When multiple approeaches exist, explain the tradeoffices.
 If uncertain, ask before proceeding.
 Review outputs before final delivery.
 
+## Rules
+Always present a written plan and wait for approval before beginning any multistep task
+
+
 ## Commands
 
 <!-- e.g. install, build, test, lint, run -->
