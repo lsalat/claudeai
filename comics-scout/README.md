@@ -2,7 +2,7 @@
 
 Daily search of Czech second-hand sites and shops for three kinds of comics:
 
-1. **Mighty Boys** – every title from the Czech publisher Mighty Boys (normal and collector's editions)
+1. **Mighty Boys** – only *Přístav Země / Zatmění* and *Trojka* (normal and collector's editions)
 2. **Tales from the Crypt** – any edition
 3. **Kolosální Conan** – the big Comics Centrum hardcovers (vol. 1, z Cimerie, Král aquilonský, Kapitán pirátů, Mstitel, …)
 

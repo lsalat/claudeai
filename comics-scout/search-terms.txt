@@ -1,5 +1,5 @@
-# Bazoš search terms – one per line. Lines starting with # are ignored.
-# Add a new title here and the next daily run picks it up.
+# Search terms – one per line. Lines starting with # are ignored.
+# The same terms are used on every site.
 
 # Kolosální Conan (Comics Centrum)
 kolosální conan
@@ -7,36 +7,12 @@ kolosální conan
 # Tales from the Crypt
 tales from the crypt
 
-# Mighty Boys – general
-mighty boys
-
-# Mighty Boys – titles
-agent strachu mighty boys
-cesta kostí mighty boys
-cesta na mars mighty boys
-dopis 44 mighty boys
-jizvy mighty boys
-kletba mighty boys
-matka mighty boys
-osm miliard přání mighty boys
-ostrov miliardářů mighty boys
-ozvěny mighty boys
-pan rosnička mighty boys
-poslední detektiv mighty boys
-pošťák mighty boys
-pouto smrti mighty boys
+# Mighty Boys – only these titles (normal + collector's edition):
+# Přístav Země / Zatmění (one book, by Zack Kaplan)
 přístav země zatmění
-sara mighty boys
-šestiprsťák mighty boys
-svědectví mighty boys
-temná věda mighty boys
+přístav země
+zatmění mighty boys
+zack kaplan
+# Trojka ("trojka" alone is a common word, so it is always combined)
+trojka komiks
 trojka mighty boys
-tulák mighty boys
-verdikt davu mighty boys
-vesmír na tripu
-vyvrhel mighty boys
-zpěv neznáma mighty boys
-gideon falls mighty boys
-ďábelská komedie mighty boys
-think tank mighty boys
-desátek mighty boys

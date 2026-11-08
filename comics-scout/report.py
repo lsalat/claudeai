@@ -5,12 +5,18 @@ Usage: python3 report.py results.json history/listings-YYYY-MM-DD.txt
 import json, re, sys, datetime
 src, dst = sys.argv[1], sys.argv[2]
 d = json.load(open(src, encoding="utf-8"))
-MB = ["agent strachu","cesta kostí","cesta na mars","dopis 44","jizvy","kletba","matka","osm miliard","ostrov miliardář","ozvěny","pan rosnička","poslední detektiv","pošťák","pouto smrti","přístav země","sara","šestiprsťák","sestiprstak","svědectví","temná věda","trojka","tulák","verdikt davu","vesmír na tripu","vyvrhel","zpěv neznáma","gideon falls","ďábelská komedie","think tank","desátek","mighty boys"]
-def cat(title):
+def has(t, *words):
+    return any(w in t for w in words)
+
+def cat(title, site=""):
     t = title.lower()
-    if "kolosáln" in t or "kolosaln" in t: return "conan"
+    if has(t, "kolosáln", "kolosaln"): return "conan"
     if "crypt" in t: return "crypt"
-    if any(k in t for k in MB): return "mb"
+    # Mighty Boys – only Přístav Země / Zatmění and Trojka
+    if has(t, "přístav země", "pristav zeme"): return "mb"
+    if has(t, "zatmění", "zatmeni") and has(t, "kaplan", "mighty", "přístav", "pristav"): return "mb"
+    if "trojka" in t and (has(t, "mighty", "komiks", "sběratel", "sberatel") or (site == "arkham" and t.strip() == "trojka")):
+        return "mb"
     return None
 NOISE = ["hell boys","hot boys","star wars","agent jfk","stmívání","garfield","xb-1","fantasy & science","harley","americký upír","comicsy v angličtině","conan doyl"]
 NAMES = {"bazos":"Bazoš","sbazar":"Sbazar","komiksbazar":"KomiksBazar","antikvariaty":"Antikvariaty.cz","arkham":"Arkham (shop)"}
@@ -20,7 +26,7 @@ for site, v in d.items():
         for it in items:
             t = it["title"]; tl = t.lower()
             if any(n in tl for n in NOISE): continue
-            c = cat(t)
+            c = cat(t, site)
             if site == "arkham" and c is None: continue
             if c is None: continue
             if "Poptávka" in it.get("note","") or tl.startswith(("koupím","koupim","sháním","hledám")):
@@ -36,7 +42,7 @@ out = [f"COMICS SCOUT – ALL FINDINGS – {today}", "="*45,
  "Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Antikvariaty.cz, Arkham.",
  "Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks automated access), Facebook (excluded).",
  "Search noise removed. Prices as listed; Aukro prices may be current auction bids.", ""]
-titles = {"conan":"1) KOLOSÁLNÍ CONAN (Comics Centrum)", "crypt":"2) TALES FROM THE CRYPT", "mb":"3) MIGHTY BOYS"}
+titles = {"conan":"1) KOLOSÁLNÍ CONAN (Comics Centrum)", "crypt":"2) TALES FROM THE CRYPT", "mb":"3) MIGHTY BOYS (Přístav Země / Zatmění, Trojka)"}
 for c in ["conan","crypt","mb"]:
     out += ["-"*45, titles[c], "-"*45]
     any_ = False

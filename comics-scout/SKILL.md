@@ -4,7 +4,7 @@ Instructions for the scheduled Claude task. Everything runs in the cloud; never 
 
 ## Goal
 Find every current listing for:
-1. **Mighty Boys** comics (all titles, běžná + sběratelská verze)
+1. **Mighty Boys** – only **Přístav Země / Zatmění** (one book by Zack Kaplan) and **Trojka**, both normal and collector's (sběratelská) edition
 2. **Tales from the Crypt** comics (any edition)
 3. **Kolosální Conan** (Comics Centrum: vol. 1, z Cimerie, Král aquilonský, Kapitán pirátů, Mstitel, any newer volume)
 
@@ -14,13 +14,13 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
 
 1. **Get the repo.** Attach `lsalat/claudeai` with push access (add_repo), clone it, and work in `comics-scout/` on branch `main`.
 
-2. **Search all sites** (takes about 8 minutes – give the command a 15-minute timeout):
+2. **Search all sites** (takes about 2 minutes – give the command a 10-minute timeout):
    `python3 scout.py --terms search-terms.txt > /tmp/results.json`
    - Sites: Bazoš, Sbazar, KomiksBazar (collector ads + antiquarian offers, which also include many **Aukro** listings), Antikvariaty.cz, Arkham.
    - Each site pauses 2–6 s between requests and stops at its first error/block. Exit code 2 means at least one site stopped – check the `status` field per site and report it. Never retry a blocked site.
 
 3. **Publisher shops** (WebFetch):
-   - https://www.mightyboys.cz/ – new titles, prices, pre-orders, "poslední kusy". If there is a new title, add a line `<title> mighty boys` to `search-terms.txt` (it is used from the next run).
+   - https://www.mightyboys.cz/ – only whether **Přístav Země / Zatmění** or **Trojka** is available again (reprint, new edition, last copies). Ignore other titles.
    - https://www.comicscentrum.cz/e-shop/kolosalni-knihy – price and availability of each Kolosální Conan volume; note any new volume.
 
 4. **Build the daily file:**
@@ -36,7 +36,7 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
 
 6. **Report** with SendUserMessage (short):
    - number of listings per category and per site
-   - the most interesting finds: cheapest offer per title, anything clearly below normal price (e.g. Král aquilonský under 3 200 Kč, Kolosální Conan vol. 1 under ~30 000 Kč, sold-out Mighty Boys titles near their original price), auctions ending soon
+   - the most interesting finds: cheapest offer per title, anything clearly below normal price (e.g. Král aquilonský under 3 200 Kč, Kolosální Conan vol. 1 under ~30 000 Kč, Přístav Země / Zatmění or Trojka near their original price (1 969 Kč / 528 Kč)), auctions ending soon
    - publisher news (new titles, stock changes)
    - any site that stopped or could not be checked
    - link to the new file on GitHub
