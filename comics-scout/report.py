@@ -22,7 +22,7 @@ def cat(title, site="", url=""):
         return "mb"
     return None
 NOISE = ["hell boys","hot boys","star wars","agent jfk","stmívání","garfield","xb-1","fantasy & science","harley","americký upír","comicsy v angličtině","conan doyl","pobřežní piráti","na stopě","crypto"]
-NAMES = {"trhknih":"Trh knih","knihobot":"Knihobot","reknihy":"Reknihy","restorio":"Restorio","bazos":"Bazoš","sbazar":"Sbazar","komiksbazar":"KomiksBazar","antikvariaty":"Antikvariaty.cz","arkham":"Arkham (shop)"}
+NAMES = {"trhknih":"Trh knih","knihobot":"Knihobot","reknihy":"Reknihy","restorio":"Restorio","antikavion":"Antikavion","bazos":"Bazoš","sbazar":"Sbazar","komiksbazar":"KomiksBazar","antikvariaty":"Antikvariaty.cz","arkham":"Arkham (shop)"}
 rows = {"conan":{}, "crypt":{}, "mb":{}}; wanted = []; aukro = {"conan":[], "crypt":[], "mb":[]}
 for site, v in d.items():
     for term, items in v["results"].items():
@@ -42,14 +42,14 @@ def line(it, site=None):
     return f"  {it['title'][:58]:<58} | {it['price']:<12} | {extra:<28} | {it['url']}"
 today = re.search(r"(\d{4}-\d{2}-\d{2})", dst).group(1)
 out = [f"COMICS SCOUT – ALL FINDINGS – {today}", "="*45,
- "Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Trh knih, Restorio, Antikvariaty.cz, Arkham.",
- "Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks bots), Knihobot, Reknihy and Antikavion (blocked by network settings), Facebook (excluded).",
+ "Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Trh knih, Knihobot, Reknihy, Restorio, Antikavion, Antikvariaty.cz, Arkham.",
+ "Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks bots), Facebook (excluded).",
  "Search noise removed. Prices as listed; Aukro prices may be current auction bids.", ""]
 titles = {"conan":"1) KOLOSÁLNÍ CONAN (Comics Centrum)", "crypt":"2) TALES FROM THE CRYPT", "mb":"3) MIGHTY BOYS (Přístav Země / Zatmění, Trojka)"}
 for c in ["conan","crypt","mb"]:
     out += ["-"*45, titles[c], "-"*45]
     any_ = False
-    for site in ["Bazoš","Sbazar","KomiksBazar","Trh knih","Knihobot","Reknihy","Restorio","Antikvariaty.cz","Arkham (shop)"]:
+    for site in ["Bazoš","Sbazar","KomiksBazar","Trh knih","Knihobot","Reknihy","Restorio","Antikavion","Antikvariaty.cz","Arkham (shop)"]:
         items = rows[c].get(site, [])
         if not items: continue
         any_ = True
