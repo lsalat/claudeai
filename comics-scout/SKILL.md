@@ -12,7 +12,7 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
 
 ## Steps
 
-1. **Get the repo.** Attach `lsalat/claudeai` with push access (add_repo), clone it, and work in `comics-scout/` on branch `main`.
+1. **Get the repo.** Call the add_repo tool (`mcp__claude-code-remote__add_repo`) with owner `lsalat`, repo `claudeai`, access `push`. If that tool is not in your tool list, first load it with ToolSearch, query `select:mcp__claude-code-remote__add_repo`. Clone exactly as add_repo instructs and work in `comics-scout/` on branch `main`. If add_repo is still unavailable or refuses, try `git clone https://github.com/lsalat/claudeai` directly once before giving up.
 
 2. **Search all sites** (takes about 2 minutes – give the command a 10-minute timeout):
    `python3 scout.py --terms search-terms.txt > /tmp/results.json`
