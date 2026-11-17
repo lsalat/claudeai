@@ -12,7 +12,10 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
 
 ## Steps
 
-1. **Get the repo.** Call the add_repo tool (`mcp__claude-code-remote__add_repo`) with owner `lsalat`, repo `claudeai`, access `push`. If that tool is not in your tool list, first load it with ToolSearch, query `select:mcp__claude-code-remote__add_repo`. Clone exactly as add_repo instructs and work in `comics-scout/` on branch `main`. If add_repo is still unavailable or refuses, try `git clone https://github.com/lsalat/claudeai` directly once before giving up.
+1. **Get the repo.** Preferred method: if the environment variable `GH_TOKEN` is set (check only with `test -n "$GH_TOKEN" && echo set`; never print its value or write it to any file, commit or message), run
+   `git config --global credential.helper '!f() { echo username=x-access-token; echo "password=$GH_TOKEN"; }; f'`
+   and then `git clone --depth 1 https://github.com/lsalat/claudeai`; later pushes use the same token automatically.
+   Only if `GH_TOKEN` is not set or that clone fails: call the add_repo tool (`mcp__claude-code-remote__add_repo`) with owner `lsalat`, repo `claudeai`, access `push`. If that tool is not in your tool list, first load it with ToolSearch, query `select:mcp__claude-code-remote__add_repo`. Clone exactly as add_repo instructs and work in `comics-scout/` on branch `main`. If add_repo is still unavailable or refuses, try `git clone https://github.com/lsalat/claudeai` directly once before giving up.
 
 2. **Search all sites** (takes about 2 minutes – give the command a 10-minute timeout):
    `python3 scout.py --terms search-terms.txt > /tmp/results.json`
