@@ -1,0 +1,83 @@
+COMICS SCOUT – ALL FINDINGS – 2026-11-17
+=============================================
+Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Trh knih, Knihobot, Reknihy, Restorio, Antikavion, Antikvariaty.cz, Arkham.
+Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks bots), Facebook (excluded).
+Run manually from a Claude chat (the scheduled run could not reach GitHub). Publisher shops could not be checked in this run (network access blocked).
+Search noise removed. Prices as listed; Aukro prices may be current auction bids.
+
+---------------------------------------------
+1) KOLOSÁLNÍ CONAN (Comics Centrum)
+---------------------------------------------
+Bazoš (7)
+  Kolosální Conan 3 - Král Aquilonský                        | 2 500 Kč     | Chrudim | 6.11. 2026         | https://knihy.bazos.cz/inzerat/226065964/kolosalni-conan-3-kral-aquilonsky.php
+  Kolosální Conan – Král Aquilonský                          | 2 600 Kč     | Brno | 31.10. 2026           | https://knihy.bazos.cz/inzerat/225801642/kolosalni-conan-kral-aquilonsky.php
+  Kolosální Conan z Cimmerie                                 | 10 000 Kč    | Praha 2 | 5.11. 2026         | https://knihy.bazos.cz/inzerat/226053915/kolosalni-conan-z-cimmerie.php
+  Kolosální Conan                                            | 37 000 Kč    | Praha 2 | 5.11. 2026         | https://knihy.bazos.cz/inzerat/226053878/kolosalni-conan.php
+  Kolosální Conan                                            | 45 000 Kč    | Liberec | 28.10. 2026        | https://knihy.bazos.cz/inzerat/225677484/kolosalni-conan.php
+  Kolosální Conan                                            | 50 000 Kč    | Ústí nad Orlicí | 28.10. 2026 | https://knihy.bazos.cz/inzerat/225682116/kolosalni-conan.php
+  Komiks Kolosální Conan, král aquilonský - Timothy Truman   | V textu      | Praha 1 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224809112/komiks-kolosalni-conan-kral-aquilonsky-timothy-truman.php
+
+Sbazar (3)
+  Kolosální Conan, král aquilonský - Comics Centrum          | 4 999 Kč     | Bory                         | https://www.sbazar.cz/inzerat/230755886-kolosalni-conan-kral-aquilonsky-comics-centrum
+  Kolosální Conan z Cimerie kniha Timothy Truman             | 11 990 Kč    | Ostrava                      | https://www.sbazar.cz/inzerat/144943657-kolosalni-conan-z-cimerie-kniha-timothy-truman
+  Lovci monster, Kolosální Conan,Temný elf atd               | Dohodou      | Chrudim                      | https://www.sbazar.cz/inzerat/233156211-lovci-monster-kolosalni-conantemny-elf-atd
+
+KomiksBazar (2)
+  KOLOSÁLNÍ CONAN - KRÁL AQUILONSKÝ                          | 2 890 CZK    |                              | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=8621
+  Kolosální Conan, král aquilonský                           | 4 500 CZK    | antiquarian shop foxbazar.cz | https://www.foxbazar.cz/p/kolosalni-conan-kral-aquilonsky/
+
+Trh knih (2)
+  Kolosální Conan – 3. - král aquilonský                     | from 2700 Kč | 2021 | lowest offer          | https://www.trhknih.cz/kniha/l0v7n6qb8v23
+  Kolosální Conan z Cimerie                                  | from 9000 Kč | 2019 | lowest offer          | https://www.trhknih.cz/kniha/26um4dd4ze
+
+Arkham (shop) (4)
+  Kolosální Conan 2                                          | 3 500 Kč     | Vyprodáno                    | https://www.arkham.cz/kolosalni-conan-2/
+  Kolosální Conan 1                                          | 3 500 Kč     | Vyprodáno                    | https://www.arkham.cz/kolosalni-conan-1/
+  Kolosální Conan 5: Mstitel                                 | 3 500 Kč     | Vyprodáno                    | https://www.arkham.cz/kolosalni-conan-5--mstitel/
+  Kolosální Conan 3                                          | 3 900 Kč     | Vyprodáno                    | https://www.arkham.cz/kolosalni-conan-3/
+
+Aukro – found via KomiksBazar (1)
+  Comics Kolosální conan z Cimerie                           | 8 975 CZK    |                              | https://www.aukro.cz/comics-kolosalni-conan-z-cimerie-7141151644
+
+---------------------------------------------
+2) TALES FROM THE CRYPT
+---------------------------------------------
+  Nothing found on any site.
+
+---------------------------------------------
+3) MIGHTY BOYS (Přístav Země / Zatmění, Trojka)
+---------------------------------------------
+Bazoš (7)
+  TROJKA - SBĚRATELSKÁ EDICE (ZABALENÁ) Mighty Boys, K. Gill | 3 333 Kč     | Litoměřice | 12.11. 2026     | https://knihy.bazos.cz/inzerat/226339584/trojka-sberatelska-edice-zabalena-mighty-boys-k-gillen.php
+  Přístav Země / Zatmění (sběratelská verze) - Zack Kaplan   | 11 000 Kč    | Ostrava | 19.10. 2026        | https://knihy.bazos.cz/inzerat/225271551/pristav-zeme-zatmeni-sberatelska-verze-zack-kaplan.php
+  Přístav země/ Zatmění , SBĚRATELSKÁ verze, Mighty Boys     | 12 222 Kč    | Praha 4 | 5.11. 2026         | https://knihy.bazos.cz/inzerat/226053189/agent-strachu-sberatelska-verze-mighty-boys.php
+  Přístav Země / Zatmění SE - Zack Kaplan (NOVÝ)             | 14 000 Kč    | Praha 7 | 1.11. 2026         | https://knihy.bazos.cz/inzerat/225833092/pristav-zeme-zatmeni-se-zack-kaplan-novy.php
+  CZ komiks kniha: Zack Kaplan - Přístav Země / Zatmění - NO | 16 500 Kč    | Cheb | 31.10. 2026           | https://knihy.bazos.cz/inzerat/225795741/cz-komiks-kniha-zack-kaplan-pristav-zeme-zatmeni-nove.php
+  Přístav země/ Zatmění , Zack Kaplan , Mighty Boys          | 19 999 Kč    | Praha 4 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224797382/pristav-zeme-zatmeni-zack-kaplan-mighty-boys.php
+  Přístav země/ Zatmění , SE , Zack Kaplan , Mighty Boys     | 19 999 Kč    | Praha 4 | 8.10. 2026         | https://knihy.bazos.cz/inzerat/224797376/pristav-zeme-zatmeni-se-zack-kaplan-mighty-boys.php
+
+Sbazar (2)
+  Přístav země/Zatmění,SBĚRATELSKÁ verze,Mighty Boys         | 12 222 Kč    | Praha, Libuš                 | https://www.sbazar.cz/inzerat/235582221-pristav-zemezatmenisberatelska-verzemighty-boys
+  Přístav země/ Zatmění , Mighty Boys                        | 19 999 Kč    | Praha, Libuš                 | https://www.sbazar.cz/inzerat/225630133-pristav-zeme-zatmeni-mighty-boys
+
+Arkham (shop) (2)
+  Trojka                                                     | 528 Kč       | Momentálně nedostupné        | https://www.arkham.cz/trojka/
+  Přístav Země / Zatmění                                     | 1 969 Kč     | Vyprodáno                    | https://www.arkham.cz/pristav-zeme-zatmeni/
+
+Aukro – found via KomiksBazar (1)
+  Přístav Země/Zatmění (Zack Kaplan)-sběratelská edice       | 8 000 CZK    |                              | https://www.aukro.cz/pristav-zeme-zatmeni-zack-kaplan-sberatelska-edice-7140733472
+
+---------------------------------------------
+WANTED ADS (people looking to BUY these – possible buyers if you sell)
+---------------------------------------------
+  [KomiksBazar] Kolosální Conan | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=9382
+  [KomiksBazar] Přístav Země / Zatmění , Zack Kaplan , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=9417
+  [KomiksBazar] Přístav Země / Zatmění , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10638
+  [KomiksBazar] Trojka , Mighty Boys | https://www.komiksbazar.cz/zobrazit-inzerat.aspx?id=10637
+
+---------------------------------------------
+PUBLISHER SHOPS
+---------------------------------------------
+  mightyboys.cz      – could not be checked (network access blocked in this session)
+  comicscentrum.cz   – could not be checked (network access blocked in this session)
+  (Arkham, a comics shop, shows Přístav Země / Zatmění 1 969 Kč sold out and Trojka 528 Kč unavailable – see above.)
