@@ -1,0 +1,76 @@
+CLAUDE SCHEDULED TASKS – Comics scout agent
+Last updated: 2026-11-17 (Prague time)
+========================================================================
+
+This agent has two scheduled tasks. Only the first one is active.
+
+########################################################################
+1) ACTIVE TASK
+########################################################################
+
+Name:               Comics scout daily (cloud)
+Task ID:            trig_01PvRgur2HnWpgAffHFmdq1K
+Status:             Enabled
+Schedule:           Every day at 06:43 (Europe/Prague)
+Schedule (cron):    CRON_TZ=Europe/Prague 43 6 * * *
+Runs in:            Cloud (a fresh session each run; no computer, desktop app or browser needed)
+Model:              claude-opus-5-5
+Permission mode:    auto (runs without asking for approval)
+Notifications:      Push: on   Email: on   Slack: off
+Connectors:         Claude_Docs, Claude_Code_Remote
+GitHub repo:        lsalat/claudeai, folder comics-scout/ (branch main)
+Claude page:        https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow
+                    ("Comics scout – latest findings", slug 4debf014-8821-4d59-9a58-2fbf034acd4e)
+Created:            2026-11-08
+Last changed:       2026-11-17 (added the step that updates the Claude page)
+
+Where to change it: claude.ai -> scheduled tasks -> "Comics scout daily (cloud)",
+                    or ask Claude in chat (Claude then updates this file and SKILL.md too).
+
+------------------------------------------------------------------------
+FULL INSTRUCTIONS (sent to Claude at every run, word for word)
+------------------------------------------------------------------------
+Run the daily comics scout. Everything runs in the cloud; do not use any browser or the user's computer.
+
+1. Attach the GitHub repo lsalat/claudeai with push access (add_repo tool), then clone it as that tool instructs.
+2. Open comics-scout/SKILL.md on branch main and follow it exactly. In short: run comics-scout/scout.py with comics-scout/search-terms.txt (searches all sites listed in SKILL.md; allow a 15-minute timeout), check mightyboys.cz and comicscentrum.cz, build a fresh file comics-scout/history/listings-YYYY-MM-DD.txt with comics-scout/report.py (today's date, Prague time; ALL findings, no comparison with earlier days), review it, commit and push it straight to main.
+3. Update the Claude artifact "Comics scout – latest findings" (slug 4debf014-8821-4d59-9a58-2fbf034acd4e, https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow) with today's findings. Do not create a new artifact.
+   - Read it with read_artifact to get the current HTML and the live version.
+   - Replace ONLY the JSON inside <script id="scout-data" type="application/json"> ... </script>; keep everything else in the page unchanged.
+   - The JSON shape is: {"date": "YYYY-MM-DD", "note": "", "sites_checked": [site names], "sites_failed": [site names that were blocked or failed], "items": [{"cat": "Mighty Boys" | "Tales from the Crypt" | "Kolosální Conan", "title": short title incl. edition (e.g. "– collector's", "new", "sealed"), "price": number in Kč or null, "price_text": price as shown (e.g. "14 999 Kč", "1 200 Kč (auction, ends in 5 h)", "dohodou"), "site": site name, "place": location or short note, "url": listing URL}]}.
+   - Include every listing from today's listings file (the same findings, same scope), plus publisher-shop items from mightyboys.cz / comicscentrum.cz with site set to the shop name and place set to stock status. Set "note" to "" unless something important needs saying (e.g. a site could not be checked).
+   - Publish the full updated HTML with publish_version, passing slug and base_version (the version read_artifact returned); omit title and icon. On a version conflict, read again and retry once.
+   - If the scout itself failed (e.g. GitHub could not be cloned), still update the artifact: keep the old items, set "date" to today, and set "note" to a one-line explanation of what failed.
+4. Send a short summary with SendUserMessage, including the artifact link.
+5. If a site is blocked or anything fails, do not retry (except the single artifact version-conflict retry above); say what could not be checked.
+
+
+########################################################################
+2) OLD TASK – DISABLED (replaced by the cloud task above on 2026-11-08)
+########################################################################
+
+Name:               Comics scout daily
+Task ID:            trig_012jdTncutKtJ22SmHzcpuRC
+Status:             Disabled (never runs)
+Schedule:           Every day at 06:43 (Europe/Prague)
+Schedule (cron):    CRON_TZ=Europe/Prague 43 6 * * *
+Runs in:            Needed the user's computer (Claude desktop app's built-in browser) for Aukro and Bazoš
+Model:              claude-opus-5-5
+Permission mode:    auto
+Notifications:      Push: on   Email: off
+Connectors:         Claude_Docs, Claude_Code_Remote
+Created:            2026-11-08
+
+------------------------------------------------------------------------
+FULL INSTRUCTIONS (word for word)
+------------------------------------------------------------------------
+Run the daily comics scout for the "Comics AI scout" project.
+
+If the `comics-scout` skill is available, load it with the Skill tool and follow it exactly. If it is not available, do this:
+1. Categories: (a) Mighty Boys publisher comics (all titles, běžná + sběratelská verze), (b) Tales from the Crypt comics in any edition, (c) Kolosální Conan by Comics Centrum (vol. 1 Kolosální Conan, z Cimerie, Král aquilonský, Kapitán pirátů, Mstitel, any newer).
+2. Aukro.cz and Bazoš.cz block cloud requests, so use the built-in browser of the user's Claude desktop app: load the built-in-browser skill, then load all browser tools in one ToolSearch call (query "mcp__remote-devices__Claude_Browser__", max_results 64). Open one search page per site with preview_start, then run all searches via javascript_tool using same-origin fetch() + DOMParser (Aukro: /vysledky-vyhledavani?text=QUERY, listing links match /name-<8+ digits>; Bazoš: /search.php?hledat=QUERY&rubriky=www&kitx=ano, items in .inzeraty with .inzeratycena). Read only: never log in, bid, buy or contact sellers. If a site is not allowed, call request_access with scope "site"; if unanswered, skip it and report that.
+3. WebFetch https://www.mightyboys.cz/ and https://www.comicscentrum.cz/e-shop/kolosalni-knihy for new titles, prices and stock.
+4. Filter out search noise. Compare with the project doc claude/comics-scout-baseline.md (or claude/second-hand-listings-2026-11-08.md if the baseline does not exist yet) using the Projects tool; then save the full current list to claude/comics-scout-baseline.md.
+5. Send a short report with SendUserMessage: auctions ending within 24 h, new listings with price and URL, price drops, unusually cheap finds, and any site that could not be checked. If nothing is new, say so in one line.
+
+If the desktop app / browser is not reachable, still do step 3, and clearly report that Aukro and Bazoš could not be checked because the computer or Claude desktop app was offline.

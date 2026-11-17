@@ -13,7 +13,8 @@ A scheduled Claude task ("Comics scout daily (cloud)") runs every morning at 6:4
 1. Searches all sites below with `scout.py`, using the terms in `search-terms.txt`.
 2. Checks the publisher shops **mightyboys.cz** and **comicscentrum.cz**.
 3. Builds a fresh file `history/listings-YYYY-MM-DD.txt` with **all findings** (no comparison with earlier days) using `report.py`, and commits it to `main`.
-4. Sends a short push summary.
+4. Updates the Claude page **"Comics scout – latest findings"** (https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow) with the same findings.
+5. Sends a short push and email summary.
 
 The full procedure the task follows is in `SKILL.md`.
 
@@ -46,6 +47,7 @@ All searching is polite: one request per term per site, 2–6 s pauses, sites se
 | `report.py` | Turns the JSON into the readable daily file, removes known search noise. |
 | `search-terms.txt` | One search term per line – add a title here to include it. |
 | `SKILL.md` | Step-by-step instructions the daily task follows. |
+| `claude_scheduler.txt` | The scheduled task's settings (schedule, notifications, full instructions). |
 | `history/` | One text file per day with everything found. |
 
 ## Run it yourself
