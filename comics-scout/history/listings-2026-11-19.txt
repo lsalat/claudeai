@@ -1,7 +1,7 @@
 COMICS SCOUT – ALL FINDINGS – 2026-11-19
 =============================================
 Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Trh knih, Knihobot, Reknihy, Restorio, Antikavion, Antikvariaty.cz, Arkham.
-Arkham stopped at 'tales from the crypt' (HTTP 403) – partial results.
+Arkham stopped at 'tales from the crypt' (HTTP 403) – partial results (Banda terms searched in a later pass).
 Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks bots), Facebook (excluded).
 Search noise removed. Prices as listed; Aukro prices may be current auction bids.
 
@@ -64,6 +64,21 @@ Sbazar (2)
 
 Aukro – found via KomiksBazar (1)
   Přístav Země/Zatmění (Zack Kaplan)-sběratelská edice       | 8 000 CZK    |                              | https://www.aukro.cz/pristav-zeme-zatmeni-zack-kaplan-sberatelska-edice-7140733472
+
+---------------------------------------------
+4) BANDA (The Boys, Garth Ennis – Czech edition)
+---------------------------------------------
+Bazoš (1)
+  Prodám komiks BANDA (TheBoys) 1: Karty jsou rozdaný (cz)   | 1 000 Kč     | Liberec | 9.11. 2026         | https://knihy.bazos.cz/inzerat/225917391/prodam-komiks-banda-theboys-1-karty-jsou-rozdany-cz.php
+
+Knihobot (2)
+  Banda. Kniha druhá, Nakládačka – Garth Ennis               | from 889 Kč  | 2 copies in stock            | https://knihobot.cz/g/122732
+  Banda. Kniha první, Karty jsou rozdaný – Garth Ennis       | from 1709 Kč | 3 copies in stock            | https://knihobot.cz/g/111526
+
+Arkham (shop) (3)
+  Banda 2: Nakládačka (A)                                    | 300 Kč       | Skladem                      | https://www.arkham.cz/banda--nakladacka--a-2/
+  Banda: Nakládačka                                          | 359 Kč       | Vyprodáno                    | https://www.arkham.cz/banda--nakladacka/
+  Banda: Karty jsou rozdaný                                  | 359 Kč       | Vyprodáno                    | https://www.arkham.cz/banda--karty-jsou-rozdany/
 
 ---------------------------------------------
 WANTED ADS (people looking to BUY these – possible buyers if you sell)

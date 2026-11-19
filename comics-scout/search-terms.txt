@@ -16,3 +16,10 @@ zack kaplan
 # Trojka ("trojka" alone is a common word, so it is always combined)
 trojka komiks
 trojka mighty boys
+
+# Banda = Czech edition of The Boys (Garth Ennis, publisher Crew), all volumes.
+# "banda" alone is a common word (bandaska, bandáže…), so it is always combined.
+banda komiks
+banda the boys
+banda ennis
+the boys ennis

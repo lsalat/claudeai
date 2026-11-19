@@ -1,10 +1,11 @@
 # Comics scout
 
-Daily search of Czech second-hand sites and shops for three kinds of comics:
+Daily search of Czech second-hand sites and shops for four kinds of comics:
 
 1. **Mighty Boys** – only *Přístav Země / Zatmění* and *Trojka* (normal and collector's editions)
 2. **Tales from the Crypt** – any edition
 3. **Kolosální Conan** – the big Comics Centrum hardcovers (vol. 1, z Cimerie, Král aquilonský, Kapitán pirátů, Mstitel, …)
+4. **Banda** – Czech edition of *The Boys* by Garth Ennis (Crew), all volumes
 
 ## How it runs
 
@@ -14,7 +15,7 @@ A scheduled Claude task ("Comics scout daily (cloud)") runs every morning at 6:4
 2. Checks the publisher shops **mightyboys.cz** and **comicscentrum.cz**.
 3. Builds a fresh file `history/listings-YYYY-MM-DD.txt` with **all findings** (no comparison with earlier days) using `report.py`, and commits it to `main`.
 4. Updates the Claude page **"Comics scout – latest findings"** (https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow) with the same findings.
-5. Sends a short push and email summary.
+5. Sends a push and e-mail summary written as a Conan-style comic issue.
 
 The full procedure the task follows is in `SKILL.md`.
 

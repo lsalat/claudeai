@@ -14,6 +14,11 @@ def cat(title, site="", url=""):
     if "978809079" in url and has(t, "přístav", "pristav", "zatmění", "zatmeni", "trojka"): return "mb"
     if "trojka" in t and "gillen" in t: return "mb"   # Trojka by Kieron Gillen = the Mighty Boys book
     if has(t, "kolosáln", "kolosaln"): return "conan"
+    # Banda = Czech edition of The Boys (Garth Ennis, Crew); "banda" alone is a common word
+    if "banda" in t and not has(t, "muertova", "ztracená banda", "banda lvů") and (
+        has(t, "the boys", "theboys", "ennis", "karty jsou rozdan", "komiks", "crew")
+        or (site == "arkham" and re.match(r"banda\b", t))):
+        return "banda"
     if has(t, "tales from the crypt", "crypt-keeper", "crypt keeper", "příběhy z krypty"): return "crypt"
     # Mighty Boys – only Přístav Země / Zatmění and Trojka
     if has(t, "přístav země", "pristav zeme"): return "mb"
@@ -23,7 +28,7 @@ def cat(title, site="", url=""):
     return None
 NOISE = ["hell boys","hot boys","star wars","agent jfk","stmívání","garfield","xb-1","fantasy & science","harley","americký upír","comicsy v angličtině","conan doyl","pobřežní piráti","na stopě","crypto"]
 NAMES = {"trhknih":"Trh knih","knihobot":"Knihobot","reknihy":"Reknihy","restorio":"Restorio","antikavion":"Antikavion","bazos":"Bazoš","sbazar":"Sbazar","komiksbazar":"KomiksBazar","antikvariaty":"Antikvariaty.cz","arkham":"Arkham (shop)"}
-rows = {"conan":{}, "crypt":{}, "mb":{}}; wanted = []; aukro = {"conan":[], "crypt":[], "mb":[]}
+rows = {"conan":{}, "crypt":{}, "mb":{}, "banda":{}}; wanted = []; aukro = {"conan":[], "crypt":[], "mb":[], "banda":[]}
 for site, v in d.items():
     for term, items in v["results"].items():
         for it in items:
@@ -45,8 +50,8 @@ out = [f"COMICS SCOUT – ALL FINDINGS – {today}", "="*45,
  "Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Trh knih, Knihobot, Reknihy, Restorio, Antikavion, Antikvariaty.cz, Arkham.",
  "Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks bots), Facebook (excluded).",
  "Search noise removed. Prices as listed; Aukro prices may be current auction bids.", ""]
-titles = {"conan":"1) KOLOSÁLNÍ CONAN (Comics Centrum)", "crypt":"2) TALES FROM THE CRYPT", "mb":"3) MIGHTY BOYS (Přístav Země / Zatmění, Trojka)"}
-for c in ["conan","crypt","mb"]:
+titles = {"conan":"1) KOLOSÁLNÍ CONAN (Comics Centrum)", "crypt":"2) TALES FROM THE CRYPT", "mb":"3) MIGHTY BOYS (Přístav Země / Zatmění, Trojka)", "banda":"4) BANDA (The Boys, Garth Ennis – Czech edition)"}
+for c in ["conan","crypt","mb","banda"]:
     out += ["-"*45, titles[c], "-"*45]
     any_ = False
     for site in ["Bazoš","Sbazar","KomiksBazar","Trh knih","Knihobot","Reknihy","Restorio","Antikavion","Antikvariaty.cz","Arkham (shop)"]:
