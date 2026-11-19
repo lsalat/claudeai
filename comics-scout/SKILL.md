@@ -50,7 +50,7 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
    - The first sentence of the PushNotification is a plain, informative banner (e.g. `⚔️ 18 finds today – Kolosální Conan vol. 1 from 37 000 Kč on Bazoš!`). Keep the e-mail under ~300 words, plain text (no Markdown tables).
 
 ## Daily e-mail
-The scheduled task sends one Gmail e-mail per run: subject `Comics scout – DD/MM/YYYY`, no table, one line per book (offers, cheapest price, site, link), sites that could not be checked and a link to the Claude page. Gmail cannot set the sender name, so it shows the Gmail account's own name. Details are in the task instructions (`claude_scheduler.txt`, step 5).
+No Gmail or other e-mail connector is used. The e-mail is Claude's own automatic summary e-mail (from the scheduled task's PushNotification): plain text, one line per book (offers, cheapest price, site, link), sites that could not be checked and a link to the Claude page. Its sender and subject are set by Claude. Details: `claude_scheduler.txt`, step 6b.
 
 ## Not covered
 - **Aukro directly** – Cloudflare blocks cloud requests (partly covered through KomiksBazar).
