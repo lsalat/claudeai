@@ -60,7 +60,7 @@ Every run is stored as one document `runs/YYYY-MM-DD_HH-MM` in the Claude page's
 After the Claude page and its history are updated, the run uploads the same data to a free Supabase Postgres database with `python3 comics-scout/supabase_push.py <run.json>` (secrets `SUPABASE_URL`, `SUPABASE_SECRET_KEY` from the environment; never print them). Grafana Cloud reads that database (read-only user `grafana_reader`) and shows the dashboard in `grafana/dashboard.json`: price trends per book, offers per run, bargains vs. limits, latest listings and full history, plus a price alert. Supabase keeps all data (no 14-day limit). Setup steps: `grafana/SETUP.md`. A failed upload never stops the run; it is reported as "Supabase not updated – …".
 
 ## Price-candle chart
-After the Supabase upload the run draws a PNG chart: `python3 chart.py /tmp/comics-scout-chart-YYYY-MM-DD.png --run /tmp/scout-run.json` (needs matplotlib; install once with `pip install --break-system-packages matplotlib` if missing).
+After the Supabase upload the run draws a PNG chart: `python3 chart.py "$PWD/comics-scout-chart-YYYY-MM-DD.png" --run /tmp/scout-run.json` (keep the PNG in the working folder, not /tmp – Gmail cannot attach files from /tmp) (needs matplotlib; install once with `pip install --break-system-packages matplotlib` if missing).
 - One row per book (grouped by category), price on a log axis.
 - **Blue candle = today's run**, **grey candle = all earlier runs together** (each earlier listing counted once per distinct price), red dashed tick = alert limit from `scout_alert_limits`.
 - Wick = lowest–highest asking price, body = middle 50 % of listings, white line = median, `n` = number of listings. Listings without a price are left out.
