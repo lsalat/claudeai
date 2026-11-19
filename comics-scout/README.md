@@ -8,6 +8,8 @@ Daily search of Czech second-hand sites and shops for five kinds of comics:
 4. **Banda** – Czech edition of *The Boys* by Garth Ennis (Crew), all volumes
 5. **Criminal** – Ed Brubaker & Sean Phillips, Czech edition only
 
+Sold-out or unavailable items ("Vyprodáno", "Momentálně nedostupné", "Není skladem") are left out.
+
 ## How it runs
 
 A scheduled Claude task ("Comics scout daily (cloud)") runs every morning at 6:43 Prague time, fully in the cloud – no computer needs to be on. Each run:

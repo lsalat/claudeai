@@ -10,6 +10,8 @@ Find every current listing for (5 categories):
 4. **Banda** – Czech edition of *The Boys* by Garth Ennis (publisher Crew), every volume (Karty jsou rozdaný, Nakládačka, …). English *The Boys* editions are out of scope.
 5. **Criminal** – comic by Ed Brubaker & Sean Phillips, **Czech edition only** (Criminal deluxe edice 1–2, Každý je zločinec, Noční rozhodnutí, Poslední z nevinných, …). English editions are out of scope. "Criminal" is a common word: on bazaar sites a listing counts only if it also mentions Brubaker, Phillips or komiks/comics; on book catalogues (Trh knih, Knihobot, Antikavion, …) a title starting with "Criminal" is enough. `report.py` applies this.
 
+**Sold-out items are out of scope:** anything marked "Vyprodáno", "Momentálně nedostupné", "Není skladem", "sold out" or "out of stock" is dropped everywhere (`report.py` does this).
+
 Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
 
 ## Steps

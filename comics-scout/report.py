@@ -47,6 +47,7 @@ def excluded_conan(title):
     if any(w in t for w in ("cimer", "cimmer", "aquilon", "pirat", "mstitel")):
         return True
     return bool(re.search(r"kolosalni\s+conan\s*(?:c\.|vol\.?|kniha)?\s*[2-5]\b", t))
+SOLD_OUT = re.compile(r"vyprod|nedostupn|není skladem|neni skladem|sold out|out of stock", re.I)
 NOISE = ["hell boys","hot boys","star wars","agent jfk","stmívání","garfield","xb-1","fantasy & science","harley","americký upír","comicsy v angličtině","conan doyl","pobřežní piráti","na stopě","crypto"]
 NAMES = {"trhknih":"Trh knih","knihobot":"Knihobot","reknihy":"Reknihy","restorio":"Restorio","antikavion":"Antikavion","bazos":"Bazoš","sbazar":"Sbazar","komiksbazar":"KomiksBazar","antikvariaty":"Antikvariaty.cz","arkham":"Arkham (shop)"}
 rows = {"conan":{}, "crypt":{}, "mb":{}, "banda":{}, "criminal":{}}; wanted = []; aukro = {"conan":[], "crypt":[], "mb":[], "banda":[], "criminal":[]}
@@ -58,6 +59,8 @@ for site, v in d.items():
             c = cat(t, site, it.get("url",""))
             if site == "arkham" and c is None: continue
             if c is None: continue
+            # Out of scope: sold-out / unavailable shop items ("Vyprodáno", "Momentálně nedostupné", "Není skladem", "sold out")
+            if SOLD_OUT.search(" ".join(str(it.get(k,"")) for k in ("title","price","place","note","date"))): continue
             if c == "conan" and excluded_conan(t): continue
             if "Poptávka" in it.get("note","") or tl.startswith(("koupím","koupim","sháním","hledám")):
                 wanted.append((NAMES[site], it)); continue
