@@ -18,6 +18,8 @@ Model:              claude-opus-5-5
 Permission mode:    auto (runs without asking for approval)
 Notifications:      Push: on   Email: on   Slack: off
 Daily e-mail:       Claude's own summary e-mail (no Gmail); one line per book found
+History:            every run saved as runs/YYYY-MM-DD_HH-MM in the Claude page's database;
+                    History tab on the page (first/last seen, price changes, gone, CSV export)
 Connectors:         Claude_Docs, Claude_Code_Remote
 GitHub repo:        lsalat/claudeai, folder comics-scout/ (branch main)
 Claude page:        https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow
@@ -26,7 +28,7 @@ Created:            2026-11-08
 Last changed:       2026-11-19 (added Criminal by Ed Brubaker – Czech edition; Gmail dropped –
                     Claude's own summary e-mail with one line per book; run timestamp on the
                     artifact; Kolosální Conan vol. 1 + newer only; mightyboys.cz and
-                    comicscentrum.cz removed)
+                    comicscentrum.cz removed; history database + History tab)
 
 Where to change it: claude.ai -> scheduled tasks -> "Comics scout daily (cloud)",
                     or ask Claude in chat (Claude then updates this file and SKILL.md too).
@@ -52,9 +54,10 @@ EXCLUSION (applies everywhere – listings file, artifact, reports): ignore ever
    - Set "note" to "" unless something important needs saying (e.g. a site could not be checked).
    - Publish the full updated HTML to the same url; omit title and icon. On a version conflict, read again and retry once.
    - If the scout itself failed (e.g. the repo could not be cloned), still update the artifact: keep the old items, set "date" and "timestamp" to now, and set "note" to a one-line explanation of what failed.
+   - History database: after publishing, save this run to the page's database with ONE db_write call (Artifact database tool mcp__claude-artifacts__db_write; if it is deferred, load it with ToolSearch query "select:mcp__claude-artifacts__db_write"): slug 4debf014-8821-4d59-9a58-2fbf034acd4e, ops = [{"op": "set", "path": "runs/YYYY-MM-DD_HH-MM" (the run's timestamp, Prague time, e.g. runs/2026-11-20_06-50), "data": the same JSON object you put in the scout-data block (date, timestamp, note, sites_checked, sites_failed, items)}]. Never change or delete older runs/ documents. If the write fails, retry once after a few seconds; if it still fails, say "History not saved" in both reports. If the scout itself failed, do not write a run document. The page's History tab builds the per-listing history (first seen, last seen, price changes, gone) from these run documents.
 5. E-mail: do NOT use Gmail or any other e-mail connector, even if one is available. The only e-mail is Claude's own automatic summary e-mail, which is built from the PushNotification in step 6b.
 6. Report every run, same facts in two places:
-   a) SendUserMessage (Markdown): a cover line "⚔️ COMICS SCOUT – D MONTH ⚔️", one short sentence of sword-and-sorcery narration, then ONE table (Markdown table, which the app renders as an HTML table) with columns Book name | Category | Price | Site | Link, containing every listing, SORTED ALPHABETICALLY BY BOOK NAME. Below the table: counts per category, highlights (KRAKK! for a bargain such as Kolosální Conan vol. 1 under ~30 000 Kč, Přístav Země / Zatmění or Trojka near the original price 1 969 Kč / 528 Kč, Banda or Criminal under shop price; TICK-TOCK… for an auction ending soon), SKREEE! for sites that could not be checked, and the artifact link.
+   a) SendUserMessage (Markdown): a cover line "⚔️ COMICS SCOUT – D MONTH ⚔️", one short sentence of sword-and-sorcery narration, then ONE table (Markdown table, which the app renders as an HTML table) with columns Book name | Category | Price | Site | Link, containing every listing, SORTED ALPHABETICALLY BY BOOK NAME. Below the table: counts per category, highlights (KRAKK! for a bargain such as Kolosální Conan vol. 1 under ~30 000 Kč, Přístav Země / Zatmění or Trojka near the original price 1 969 Kč / 528 Kč, Banda or Criminal under shop price; TICK-TOCK… for an auction ending soon), SKREEE! for sites that could not be checked, whether the history was saved, and the artifact link.
    b) PushNotification (push banner + Claude's summary e-mail, inside <routine_summary> tags, plain text, no tables, under ~350 words): first sentence a plain banner (e.g. "⚔️ 26 finds today – Přístav Země / Zatmění SE from 8 000 Kč on Aukro"). Then one line with total offers and counts per category (Kolosální Conan, Mighty Boys, Banda, Criminal, Tales from the Crypt). Then "Books found (A–Z)": ONE LINE PER BOOK, sorted A–Z by book name. Group the day's listings by book: same title and volume; split editions that differ a lot in price (Přístav Země / Zatmění collector's vs normal, Trojka collector's vs normal); one line per Banda volume and per Criminal volume; Kolosální Conan vol. 1 separate from mixed bundle ads; a doubtful listing (marked CHECK) gets its own line with "CHECK". Each line: "Book name – N offers (+ M sold out) – from <cheapest price> – <site, place> – <URL of the cheapest offer>". Sold-out shop items do not count as offers. A category with no finds gets one line "<Category> – nothing found". Then one or two highlight lines, "Couldn't check:" with the sites that failed, and the artifact link https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow ("All offers").
    Write any narration yourself; never quote Robert E. Howard or any comic. Prices, counts and URLs must be exact.
 7. If a site is blocked or anything fails, do not retry (except the single artifact version-conflict retry above); say what could not be checked.

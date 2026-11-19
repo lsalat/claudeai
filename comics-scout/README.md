@@ -16,6 +16,7 @@ A scheduled Claude task ("Comics scout daily (cloud)") runs every morning at 6:4
 2. Does not check publisher shops (mightyboys.cz and comicscentrum.cz were removed from the scout).
 3. Builds a fresh file `history/listings-YYYY-MM-DD.txt` with **all findings** (no comparison with earlier days) using `report.py` (kept in the run's workspace; the task uses GitHub read-only and pushes nothing).
 4. Updates the Claude page **"Comics scout – latest findings"** (https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow) with the same findings and the run's timestamp (Prague time).
+   It also saves the run to the page's database; the page's **History** tab shows every listing ever found (first/last seen, price changes, gone = likely sold) and can export it as CSV.
 5. Sends an HTML report and a push notification; Claude's own summary e-mail lists one line per book found (no Gmail).
 
 The full procedure the task follows is in `SKILL.md`.
