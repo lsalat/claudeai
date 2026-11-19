@@ -1,5 +1,5 @@
 CLAUDE SCHEDULED TASKS – Comics scout agent
-Last updated: 2026-11-17 (Prague time)
+Last updated: 2026-11-19 (Prague time)
 ========================================================================
 
 This agent has two scheduled tasks. Only the first one is active.
@@ -22,7 +22,9 @@ GitHub repo:        lsalat/claudeai, folder comics-scout/ (branch main)
 Claude page:        https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow
                     ("Comics scout – latest findings", slug 4debf014-8821-4d59-9a58-2fbf034acd4e)
 Created:            2026-11-08
-Last changed:       2026-11-17 (added the step that updates the Claude page)
+Last changed:       2026-11-19 (GitHub access now only via add_repo; GH_TOKEN removed because
+                    Claude's cloud blocks personal tokens. Runs on 2026-11-18/19 failed after
+                    the GitHub link to Claude lapsed; reconnected 2026-11-19)
 
 Where to change it: claude.ai -> scheduled tasks -> "Comics scout daily (cloud)",
                     or ask Claude in chat (Claude then updates this file and SKILL.md too).
@@ -32,7 +34,7 @@ FULL INSTRUCTIONS (sent to Claude at every run, word for word)
 ------------------------------------------------------------------------
 Run the daily comics scout. Everything runs in the cloud; do not use any browser or the user's computer.
 
-1. Get the GitHub repo lsalat/claudeai. Preferred method: if the environment variable GH_TOKEN is set (check only with `test -n "$GH_TOKEN" && echo set`; never print its value, never write it to any file, commit or message), run `git config --global credential.helper '!f() { echo username=x-access-token; echo "password=$GH_TOKEN"; }; f'` and then `git clone --depth 1 https://github.com/lsalat/claudeai`; later pushes use the same token automatically. Only if GH_TOKEN is not set or that clone fails: call the add_repo tool (mcp__claude-code-remote__add_repo) with owner "lsalat", repo "claudeai", access "push". If that tool is not in your tool list, first load it with ToolSearch, query "select:mcp__claude-code-remote__add_repo". Then clone exactly as add_repo instructs. If add_repo is still unavailable or refuses, try `git clone https://github.com/lsalat/claudeai` directly once before giving up.
+1. Get the GitHub repo lsalat/claudeai: call the add_repo tool (mcp__claude-code-remote__add_repo) with owner "lsalat", repo "claudeai", access "push" (if that tool is not in your tool list, first load it with ToolSearch, query "select:mcp__claude-code-remote__add_repo"), then clone exactly as add_repo instructs. Do not use a personal GitHub token or GH_TOKEN: Claude's cloud only lets you reach repos attached through add_repo. If add_repo refuses (for example "link your GitHub account"), do not retry; skip the GitHub steps and say in the summary and in the artifact note that GitHub must be reconnected in claude.ai Settings -> Connectors.
 2. Open comics-scout/SKILL.md on branch main and follow it exactly. In short: run comics-scout/scout.py with comics-scout/search-terms.txt (searches all sites listed in SKILL.md; allow a 15-minute timeout), check mightyboys.cz and comicscentrum.cz, build a fresh file comics-scout/history/listings-YYYY-MM-DD.txt with comics-scout/report.py (today's date, Prague time; ALL findings, no comparison with earlier days), review it, commit and push it straight to main.
 3. Update the Claude artifact "Comics scout – latest findings" (slug 4debf014-8821-4d59-9a58-2fbf034acd4e, https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow) with today's findings. Do not create a new artifact.
    - Read it with read_artifact to get the current HTML and the live version.
