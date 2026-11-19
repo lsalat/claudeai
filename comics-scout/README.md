@@ -19,7 +19,7 @@ A scheduled Claude task ("Comics scout daily (cloud)") runs every morning at 6:4
 3. Builds a fresh file `history/listings-YYYY-MM-DD.txt` with **all findings** (no comparison with earlier days) using `report.py` (kept in the run's workspace; the task uses GitHub read-only and pushes nothing).
 4. Updates the Claude page **"Comics scout – latest findings"** (https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow) with the same findings and the run's timestamp (Prague time).
    It also saves the run to the page's database; the page's **History** tab shows every listing ever found (first/last seen, price changes, gone = likely sold) and can export it as CSV.
-5. Sends an HTML report and a push notification; Claude's own summary e-mail lists one line per book found (no Gmail).
+5. Draws a price-candle chart (`chart.py`: blue = today, grey = earlier runs, red = alert limit) and e-mails it via Gmail as an attachment to ladislav.salat@seznam.cz; also sends an HTML report, a push notification and Claude's own summary e-mail (one line per book found).
 
 The full procedure the task follows is in `SKILL.md`.
 

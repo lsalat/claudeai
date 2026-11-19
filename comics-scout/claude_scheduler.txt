@@ -1,5 +1,5 @@
 CLAUDE SCHEDULED TASKS – Comics scout agent
-Last updated: 2026-11-19 (Prague time)
+Last updated: 2026-11-19 18:50 (Prague time)
 ========================================================================
 
 This agent has two scheduled tasks. Only the first one is active.
@@ -17,18 +17,21 @@ Runs in:            Cloud (a fresh session each run; no computer, desktop app or
 Model:              claude-opus-5-5
 Permission mode:    auto (runs without asking for approval)
 Notifications:      Push: on   Email: on   Slack: off
-Daily e-mail:       Claude's own summary e-mail (no Gmail); one line per book found
+Daily e-mail:       Gmail message from ladislav.salat@gmail.com to ladislav.salat@seznam.cz with the
+                    price-candle chart (PNG) attached; Claude's own summary e-mail still arrives too
+Chart:              chart.py – one row per book, blue = today, grey = all earlier runs, red = alert limit
 History:            every run saved as runs/YYYY-MM-DD_HH-MM in the Claude page's database;
                     History tab on the page (first/last seen, price changes, gone, CSV export)
 Grafana:            every run also uploaded to Supabase (supabase_push.py) for Grafana Cloud;
                     needs environment secrets SUPABASE_URL + SUPABASE_SECRET_KEY and allowed
                     domain supabase.co (setup: grafana/SETUP.md)
-Connectors:         Claude_Docs, Claude_Code_Remote
+Connectors:         Claude_Docs, Claude_Code_Remote, Gmail (Gmail must be added in the task's settings)
 GitHub repo:        lsalat/claudeai, folder comics-scout/ (branch main)
 Claude page:        https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow
                     ("Comics scout – latest findings", slug 4debf014-8821-4d59-9a58-2fbf034acd4e)
 Created:            2026-11-08
-Last changed:       2026-11-19 (added Criminal by Ed Brubaker – Czech edition; Gmail dropped –
+Last changed:       2026-11-19 (price-candle chart e-mailed via Gmail as an attachment, with
+                    grey history; 8 + 17 Nov findings backfilled into Supabase; added Criminal by Ed Brubaker – Czech edition; Gmail dropped –
                     Claude's own summary e-mail with one line per book; run timestamp on the
                     artifact; Kolosální Conan vol. 1 + newer only; mightyboys.cz and
                     comicscentrum.cz removed; history database + History tab;
@@ -46,7 +49,7 @@ Scope (5 categories): Mighty Boys (only Přístav Země / Zatmění and Trojka, 
 
 Do NOT check the publisher shops mightyboys.cz or comicscentrum.cz – they are no longer part of the scout.
 
-EXCLUSION (applies everywhere – listings file, artifact, reports): ignore every Kolosální Conan listing whose title contains "z Cimerie" / "z Cimmerie", "Král aquilonský", "Kapitán pirátů" or "Mstitel" (match without diacritics and case: "cimer", "cimmer", "aquilon", "pirat", "mstitel"), and also numbered volumes 2, 3, 4 and 5 (e.g. "Kolosální Conan 2", "Kolosální Conan 5: Mstitel"), because 2 = z Cimerie, 3 = Král aquilonský, 4 = Kapitán pirátů, 5 = Mstitel. Keep vol. 1 (incl. "Kolosální Conan 1" and plain "Kolosální Conan"), any newer volume, and mixed bundle ads.
+EXCLUSION (applies everywhere – listings file, artifact, reports, chart): ignore every Kolosální Conan listing whose title contains "z Cimerie" / "z Cimmerie", "Král aquilonský", "Kapitán pirátů" or "Mstitel" (match without diacritics and case: "cimer", "cimmer", "aquilon", "pirat", "mstitel"), and also numbered volumes 2, 3, 4 and 5 (e.g. "Kolosální Conan 2", "Kolosální Conan 5: Mstitel"), because 2 = z Cimerie, 3 = Král aquilonský, 4 = Kapitán pirátů, 5 = Mstitel. Keep vol. 1 (incl. "Kolosální Conan 1" and plain "Kolosální Conan"), any newer volume, and mixed bundle ads.
 
 SOLD OUT is out of scope (applies everywhere – listings file, artifact, history, reports): drop every item that is sold out or unavailable, e.g. marked "Vyprodáno", "Momentálně nedostupné", "Není skladem", "sold out" or "out of stock" (report.py already drops these; remove any it missed).
 
@@ -55,20 +58,25 @@ SOLD OUT is out of scope (applies everywhere – listings file, artifact, histor
 3. Build an HTML report file listings-YYYY-MM-DD.html in the scratchpad: a self-contained page (inline CSS, readable in light and dark mode, works on a phone) with a heading "Comics scout – YYYY-MM-DD HH:MM" (Prague time), one line of counts per category and the sites that could not be checked, then ONE HTML <table> with columns: Book name | Category | Price | Site | Place / note | Link. Rows = every listing from today's file, SORTED ALPHABETICALLY BY BOOK NAME (case- and diacritics-insensitive, Czech order). Mark suspiciously cheap rows with "CHECK" in the note. Send it with SendUserFile (display "render").
 4. Update the Claude artifact "Comics scout – latest findings" (slug 4debf014-8821-4d59-9a58-2fbf034acd4e, https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow). Do not create a new artifact.
    - Read it with the Artifact tool (action read with the url; also read path "index.html" to get the page file on disk).
-   - Replace ONLY the JSON inside <script id="scout-data" type="application/json"> ... </script>; keep everything else unchanged (the page already sorts by book name by default and shows the timestamp under the heading).
+   - Replace ONLY the JSON inside <script id="scout-data" type="application/json"> ... </script>; keep everything else unchanged (the page already sorts by book name by default, shows the timestamp under the heading, and has a History tab).
    - JSON shape: {"date": "YYYY-MM-DD", "timestamp": "YYYY-MM-DD HH:MM" (current Prague time, 24-hour clock, taken with `TZ=Europe/Prague date '+%Y-%m-%d %H:%M'` right before publishing), "note": "", "sites_checked": [site names], "sites_failed": [site names that were blocked or failed], "items": [{"cat": "Mighty Boys" | "Tales from the Crypt" | "Kolosální Conan" | "Banda" | "Criminal", "title": short title incl. edition, "price": number in Kč or null, "price_text": price as shown, "site": site name, "place": location or short note, "url": listing URL}]}. The "timestamp" field is required on every run. Put items in the same book-name order as the HTML table. Same rows as the table (exclusions applied).
    - Set "note" to "" unless something important needs saying (e.g. a site could not be checked).
    - Publish the full updated HTML to the same url; omit title and icon. On a version conflict, read again and retry once.
    - If the scout itself failed (e.g. the repo could not be cloned), still update the artifact: keep the old items, set "date" and "timestamp" to now, and set "note" to a one-line explanation of what failed.
    - History database: after publishing, save this run to the page's database with ONE db_write call (Artifact database tool mcp__claude-artifacts__db_write; if it is deferred, load it with ToolSearch query "select:mcp__claude-artifacts__db_write"): slug 4debf014-8821-4d59-9a58-2fbf034acd4e, ops = [{"op": "set", "path": "runs/YYYY-MM-DD_HH-MM" (the run's timestamp, Prague time, e.g. runs/2026-11-20_06-50), "data": the same JSON object you put in the scout-data block (date, timestamp, note, sites_checked, sites_failed, items)}]. Never change or delete older runs/ documents. If the write fails, retry once after a few seconds; if it still fails, say "History not saved" in both reports. If the scout itself failed, do not write a run document. The page's History tab builds the per-listing history (first seen, last seen, price changes, gone) from these run documents.
    - Long-term history for Grafana (Supabase): write the same scout-data JSON object to a file (e.g. /tmp/scout-run.json) and run `python3 comics-scout/supabase_push.py /tmp/scout-run.json` (allow 2 minutes). It reads SUPABASE_URL and SUPABASE_SECRET_KEY from the environment; never print, echo or log their values. Report its one-line result ("Supabase updated – …" or "Supabase not updated – <reason>") in both reports. Do not retry; a failure here must not stop the run. Skip it if the scout itself failed.
-5. E-mail: do NOT use Gmail or any other e-mail connector, even if one is available. The only e-mail is Claude's own automatic summary e-mail, which is built from the PushNotification in step 6b.
+   - Price-candle chart (PNG for the e-mail): AFTER the Supabase upload, run `python3 comics-scout/chart.py /tmp/comics-scout-chart-YYYY-MM-DD.png --run /tmp/scout-run.json` (allow 2 minutes; if it fails with "No module named 'matplotlib'", run `pip install --break-system-packages matplotlib` once and run chart.py once more). It reads the whole history from Supabase (same secrets, never print them): one row per book, a BLUE candle for today's run and a GREY candle for all earlier runs, plus the alert limits; if Supabase is unreachable it draws today's run only. Report its one-line result ("Chart ready – …" or "Chart not made – <reason>") in both reports. Send the PNG with SendUserFile (display "render"). A chart failure must not stop the run. Skip it if the scout itself failed.
+5. E-mail with the chart (Gmail): send ONE e-mail with the Gmail connector's send_message tool (mcp__Gmail__send_message; if it is deferred, load it with ToolSearch query "select:mcp__Gmail__send_message"). Use no other Gmail tool and never read, search, label or delete mail.
+   - to: ["ladislav.salat@seznam.cz"]; subject: "⚔️ Comics scout – YYYY-MM-DD – N finds" (N = total offers today).
+   - body (plain text, no Markdown, no tables): the same text as the PushNotification in step 6b (without the <routine_summary> tags), followed by one line "Chart attached: blue = today, grey = earlier runs, red dashed = alert limit."
+   - attachments: [{"filename": "comics-scout-chart-YYYY-MM-DD.png", "mimeType": "image/png", "content": file reference "sha256:<64 lowercase hex>:/tmp/comics-scout-chart-YYYY-MM-DD.png"}] – compute the hash with `sha256sum`; do not paste base64. If the chart was not made, send the e-mail without the attachment and say "Chart not made – <reason>" in it.
+   - Send it once; do not retry. If the Gmail tool is not available or sending fails, say "Chart e-mail not sent – <reason>" in both reports and carry on.
+   - Claude's own automatic summary e-mail (from the PushNotification in step 6b) is still produced as before.
 6. Report every run, same facts in two places:
-   a) SendUserMessage (Markdown): a cover line "⚔️ COMICS SCOUT – D MONTH ⚔️", one short sentence of sword-and-sorcery narration, then ONE table (Markdown table, which the app renders as an HTML table) with columns Book name | Category | Price | Site | Link, containing every listing, SORTED ALPHABETICALLY BY BOOK NAME. Below the table: counts per category, highlights (KRAKK! for a bargain such as Kolosální Conan vol. 1 under ~30 000 Kč, Přístav Země / Zatmění or Trojka near the original price 1 969 Kč / 528 Kč, Banda or Criminal under shop price; TICK-TOCK… for an auction ending soon), SKREEE! for sites that could not be checked, whether the history was saved, whether Supabase/Grafana was updated, and the artifact link.
+   a) SendUserMessage (Markdown): a cover line "⚔️ COMICS SCOUT – D MONTH ⚔️", one short sentence of sword-and-sorcery narration, then ONE table (Markdown table, which the app renders as an HTML table) with columns Book name | Category | Price | Site | Link, containing every listing, SORTED ALPHABETICALLY BY BOOK NAME. Below the table: counts per category, highlights (KRAKK! for a bargain such as Kolosální Conan vol. 1 under ~30 000 Kč, Přístav Země / Zatmění or Trojka near the original price 1 969 Kč / 528 Kč, Banda or Criminal under shop price; TICK-TOCK… for an auction ending soon), SKREEE! for sites that could not be checked, whether the history was saved, whether Supabase/Grafana was updated, whether the chart was made and the chart e-mail sent, and the artifact link.
    b) PushNotification (push banner + Claude's summary e-mail, inside <routine_summary> tags, plain text, no tables, under ~350 words): first sentence a plain banner (e.g. "⚔️ 26 finds today – Přístav Země / Zatmění SE from 8 000 Kč on Aukro"). Then one line with total offers and counts per category (Kolosální Conan, Mighty Boys, Banda, Criminal, Tales from the Crypt). Then "Books found (A–Z)": ONE LINE PER BOOK, sorted A–Z by book name. Group the day's listings by book: same title and volume; split editions that differ a lot in price (Přístav Země / Zatmění collector's vs normal, Trojka collector's vs normal); one line per Banda volume and per Criminal volume; Kolosální Conan vol. 1 separate from mixed bundle ads; a doubtful listing (marked CHECK) gets its own line with "CHECK". Each line: "Book name – N offers – from <cheapest price> – <site, place> – <URL of the cheapest offer>". A category with no finds gets one line "<Category> – nothing found". Then one or two highlight lines, "Couldn't check:" with the sites that failed, and the artifact link https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow ("All offers").
    Write any narration yourself; never quote Robert E. Howard or any comic. Prices, counts and URLs must be exact.
-7. If a site is blocked or anything fails, do not retry (except the single artifact version-conflict retry above); say what could not be checked.
-
+7. If a site is blocked or anything fails, do not retry (except the single artifact version-conflict retry and the single matplotlib install above); say what could not be checked.
 
 ########################################################################
 2) OLD TASK – DISABLED (replaced by the cloud task above on 2026-11-08)

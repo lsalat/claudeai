@@ -59,8 +59,20 @@ Every run is stored as one document `runs/YYYY-MM-DD_HH-MM` in the Claude page's
 ## Supabase + Grafana (long-term history)
 After the Claude page and its history are updated, the run uploads the same data to a free Supabase Postgres database with `python3 comics-scout/supabase_push.py <run.json>` (secrets `SUPABASE_URL`, `SUPABASE_SECRET_KEY` from the environment; never print them). Grafana Cloud reads that database (read-only user `grafana_reader`) and shows the dashboard in `grafana/dashboard.json`: price trends per book, offers per run, bargains vs. limits, latest listings and full history, plus a price alert. Supabase keeps all data (no 14-day limit). Setup steps: `grafana/SETUP.md`. A failed upload never stops the run; it is reported as "Supabase not updated – …".
 
+## Price-candle chart
+After the Supabase upload the run draws a PNG chart: `python3 chart.py /tmp/comics-scout-chart-YYYY-MM-DD.png --run /tmp/scout-run.json` (needs matplotlib; install once with `pip install --break-system-packages matplotlib` if missing).
+- One row per book (grouped by category), price on a log axis.
+- **Blue candle = today's run**, **grey candle = all earlier runs together** (each earlier listing counted once per distinct price), red dashed tick = alert limit from `scout_alert_limits`.
+- Wick = lowest–highest asking price, body = middle 50 % of listings, white line = median, `n` = number of listings. Listings without a price are left out.
+- History comes from Supabase (`SUPABASE_URL`, `SUPABASE_SECRET_KEY`; never printed). If Supabase is unreachable, `--run` draws today's run only.
+- Offline test: `python3 chart.py out.png --data data.json` with `{"listings":[{run_ts,url_key,cat,book,site,price}],"limits":{book:max_price}}`.
+- The 8 Nov and 17 Nov findings were backfilled into Supabase from `history/` on 2026-11-19 (run note "backfilled from …").
+
 ## Daily e-mail
-No Gmail or other e-mail connector is used. The e-mail is Claude's own automatic summary e-mail (from the scheduled task's PushNotification): plain text, one line per book (offers, cheapest price, site, link), sites that could not be checked and a link to the Claude page. Its sender and subject are set by Claude. Details: `claude_scheduler.txt`, step 6b.
+Two e-mails arrive every run:
+1. **Gmail with the chart** – sent with the Gmail connector's `send_message` only (never read, search or change mail) from ladislav.salat@gmail.com to **ladislav.salat@seznam.cz**, subject `⚔️ Comics scout – YYYY-MM-DD – N finds`, plain-text body = the same text as the PushNotification, chart PNG attached as `comics-scout-chart-YYYY-MM-DD.png` (attached by file reference `sha256:<hash>:<path>`, not base64). Sent once, never retried; a failure is reported as "Chart e-mail not sent – …". The Gmail connector must be attached to the scheduled task (task settings → connectors).
+2. **Claude's own automatic summary e-mail** (from the scheduled task's PushNotification): plain text, one line per book (offers, cheapest price, site, link), sites that could not be checked and a link to the Claude page. It can be switched off in the task's notification settings if the Gmail one is enough.
+Details: `claude_scheduler.txt`, steps 4–6.
 
 ## Not covered
 - **Aukro directly** – Cloudflare blocks cloud requests (partly covered through KomiksBazar).
