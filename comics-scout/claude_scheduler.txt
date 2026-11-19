@@ -17,6 +17,8 @@ Runs in:            Cloud (a fresh session each run; no computer, desktop app or
 Model:              claude-opus-5-5
 Permission mode:    auto (runs without asking for approval)
 Notifications:      Push: on   Email: on   Slack: off
+Daily e-mail:       Gmail (sent from ladislav.salat@gmail.com) to ladislav.salat@seznam.cz,
+                    subject "Comics scout – DD/MM/YYYY"
 Connectors:         Claude_Docs, Claude_Code_Remote, Gmail (Gmail must be added in the task's settings)
 GitHub repo:        lsalat/claudeai, folder comics-scout/ (branch main)
 Claude page:        https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow
@@ -53,7 +55,7 @@ EXCLUSION (applies everywhere – listings file, artifact, reports, e-mail): ign
    - If the scout itself failed (e.g. the repo could not be cloned), still update the artifact: keep the old items, set "date" and "timestamp" to now, and set "note" to a one-line explanation of what failed.
 5. Daily e-mail via Gmail (grouped by book, NO table):
    - Load the Gmail send tool: ToolSearch with query "gmail send", max_results 10 (the tool is mcp__Gmail__send_message). If it is not available, do not create a draft; say in both reports "E-mail not sent – Gmail is not connected to this scheduled task". If sending fails, do not retry; say so.
-   - To: the account owner's own e-mail address (the user e-mail given in this session's context). If no address is known, do not guess; skip sending and say so in both reports.
+   - To: ladislav.salat@seznam.cz (only this address).
    - Sender name: the Gmail tool cannot set a display name ("Comics scout"), so the e-mail goes out under the Gmail account's own name. Do not try workarounds.
    - Subject: "Comics scout – DD/MM/YYYY" (today's date, Prague time, e.g. "Comics scout – 19/11/2026").
    - Body: send both htmlBody (simple e-mail-safe HTML, inline styles only, no <table>, no <style> block, no scripts, no images) and body (the same content as plain text). Content, in this order:
