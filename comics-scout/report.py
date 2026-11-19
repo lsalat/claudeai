@@ -26,6 +26,18 @@ def cat(title, site="", url=""):
     if "trojka" in t and (has(t, "mighty", "komiks", "sběratel", "sberatel") or (site == "arkham" and t.strip() == "trojka")):
         return "mb"
     return None
+import unicodedata
+def _plain(t):
+    return "".join(ch for ch in unicodedata.normalize("NFKD", t.lower()) if not unicodedata.combining(ch))
+# Kolosální Conan volumes the user does not want: 2 = z Cimerie, 3 = Král aquilonský, 4 = Kapitán pirátů, 5 = Mstitel.
+# Keep vol. 1, newer volumes and mixed bundle ads.
+def excluded_conan(title):
+    t = _plain(title)
+    if any(w in t for w in ("lovci monster", "temny elf", "komiksy")):  # mixed bundle ads stay
+        return False
+    if any(w in t for w in ("cimer", "cimmer", "aquilon", "pirat", "mstitel")):
+        return True
+    return bool(re.search(r"kolosalni\s+conan\s*(?:c\.|vol\.?|kniha)?\s*[2-5]\b", t))
 NOISE = ["hell boys","hot boys","star wars","agent jfk","stmívání","garfield","xb-1","fantasy & science","harley","americký upír","comicsy v angličtině","conan doyl","pobřežní piráti","na stopě","crypto"]
 NAMES = {"trhknih":"Trh knih","knihobot":"Knihobot","reknihy":"Reknihy","restorio":"Restorio","antikavion":"Antikavion","bazos":"Bazoš","sbazar":"Sbazar","komiksbazar":"KomiksBazar","antikvariaty":"Antikvariaty.cz","arkham":"Arkham (shop)"}
 rows = {"conan":{}, "crypt":{}, "mb":{}, "banda":{}}; wanted = []; aukro = {"conan":[], "crypt":[], "mb":[], "banda":[]}
@@ -37,6 +49,7 @@ for site, v in d.items():
             c = cat(t, site, it.get("url",""))
             if site == "arkham" and c is None: continue
             if c is None: continue
+            if c == "conan" and excluded_conan(t): continue
             if "Poptávka" in it.get("note","") or tl.startswith(("koupím","koupim","sháním","hledám")):
                 wanted.append((NAMES[site], it)); continue
             if "via Aukro" in it.get("note",""):
