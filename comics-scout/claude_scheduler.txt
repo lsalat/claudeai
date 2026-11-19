@@ -17,14 +17,14 @@ Runs in:            Cloud (a fresh session each run; no computer, desktop app or
 Model:              claude-opus-5-5
 Permission mode:    auto (runs without asking for approval)
 Notifications:      Push: on   Email: on   Slack: off
-Connectors:         Claude_Docs, Claude_Code_Remote
+Connectors:         Claude_Docs, Claude_Code_Remote, Gmail (Gmail must be added in the task's settings)
 GitHub repo:        lsalat/claudeai, folder comics-scout/ (branch main)
 Claude page:        https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow
                     ("Comics scout – latest findings", slug 4debf014-8821-4d59-9a58-2fbf034acd4e)
 Created:            2026-11-08
-Last changed:       2026-11-19 (artifact shows run timestamp; Kolosální Conan vol. 2 z Cimerie
-                    excluded too (only vol. 1 + newer volumes kept); mightyboys.cz shop check
-                    removed; GitHub used read-only; HTML report + Gmail e-mail with table)
+Last changed:       2026-11-19 (added Criminal by Ed Brubaker – Czech edition; daily Gmail e-mail
+                    "Comics scout – DD/MM/YYYY", one line per book, no table; run timestamp
+                    on the artifact; Kolosální Conan vol. 1 + newer only; mightyboys.cz removed)
 
 Where to change it: claude.ai -> scheduled tasks -> "Comics scout daily (cloud)",
                     or ask Claude in chat (Claude then updates this file and SKILL.md too).
@@ -34,7 +34,7 @@ FULL INSTRUCTIONS (sent to Claude at every run, word for word)
 ------------------------------------------------------------------------
 Run the daily comics scout. Everything runs in the cloud; do not use any browser or the user's computer. Nothing is pushed to GitHub: GitHub is used read-only, only to get the scripts.
 
-Scope (4 categories): Mighty Boys (only Přístav Země / Zatmění and Trojka, normal + collector's; second-hand listings only), Tales from the Crypt (any edition), Kolosální Conan (Comics Centrum; only vol. 1 and any newer volume), and Banda (Czech edition of The Boys by Garth Ennis, publisher Crew, all volumes; English The Boys editions are out of scope).
+Scope (5 categories): Mighty Boys (only Přístav Země / Zatmění and Trojka, normal + collector's; second-hand listings only), Tales from the Crypt (any edition), Kolosální Conan (Comics Centrum; only vol. 1 and any newer volume), Banda (Czech edition of The Boys by Garth Ennis, publisher Crew, all volumes; English The Boys editions are out of scope), and Criminal (comic by Ed Brubaker & Sean Phillips, Czech edition only – e.g. Criminal deluxe edice 1–2, Každý je zločinec, Noční rozhodnutí, Poslední z nevinných; English editions such as Coward, Lawless, Image/Marvel volumes are out of scope; on bazaar sites a listing counts only if it also mentions Brubaker, Phillips or komiks/comics – report.py applies this).
 
 Do NOT check mightyboys.cz (the publisher's shop) – it is no longer part of the scout.
 
@@ -46,16 +46,25 @@ EXCLUSION (applies everywhere – listings file, artifact, reports, e-mail): ign
 4. Update the Claude artifact "Comics scout – latest findings" (slug 4debf014-8821-4d59-9a58-2fbf034acd4e, https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow). Do not create a new artifact.
    - Read it with the Artifact tool (action read with the url; also read path "index.html" to get the page file on disk).
    - Replace ONLY the JSON inside <script id="scout-data" type="application/json"> ... </script>; keep everything else unchanged (the page already sorts by book name by default and shows the timestamp under the heading).
-   - JSON shape: {"date": "YYYY-MM-DD", "timestamp": "YYYY-MM-DD HH:MM" (current Prague time, 24-hour clock, taken with `TZ=Europe/Prague date '+%Y-%m-%d %H:%M'` right before publishing), "note": "", "sites_checked": [site names], "sites_failed": [site names that were blocked or failed], "items": [{"cat": "Mighty Boys" | "Tales from the Crypt" | "Kolosální Conan" | "Banda", "title": short title incl. edition, "price": number in Kč or null, "price_text": price as shown, "site": site name, "place": location or short note, "url": listing URL}]}. The "timestamp" field is required on every run. Put items in the same book-name order as the HTML table. Same rows as the table (exclusions applied).
+   - JSON shape: {"date": "YYYY-MM-DD", "timestamp": "YYYY-MM-DD HH:MM" (current Prague time, 24-hour clock, taken with `TZ=Europe/Prague date '+%Y-%m-%d %H:%M'` right before publishing), "note": "", "sites_checked": [site names], "sites_failed": [site names that were blocked or failed], "items": [{"cat": "Mighty Boys" | "Tales from the Crypt" | "Kolosální Conan" | "Banda" | "Criminal", "title": short title incl. edition, "price": number in Kč or null, "price_text": price as shown, "site": site name, "place": location or short note, "url": listing URL}]}. The "timestamp" field is required on every run. Put items in the same book-name order as the HTML table. Same rows as the table (exclusions applied).
    - Set "note" to "" unless something important needs saying (e.g. a site could not be checked).
    - Publish the full updated HTML to the same url; omit title and icon. On a version conflict, read again and retry once.
    - If the scout itself failed (e.g. the repo could not be cloned), still update the artifact: keep the old items, set "date" and "timestamp" to now, and set "note" to a one-line explanation of what failed.
-5. HTML e-mail with the table (Gmail connector):
-   - Look for Gmail tools (they may be deferred: ToolSearch with query "gmail send", max_results 10). If a tool that SENDS a message with an HTML body is available, send ONE e-mail to the account owner's own e-mail address (the user e-mail given in this session's context; if none is given, send it to the connected Gmail account's own address). Subject: "Comics scout – YYYY-MM-DD – N finds". HTML body: e-mail-safe HTML with inline styles only (no <style> block, no scripts, no external images): a short heading, one line of counts per category, highlights (bargains, auctions ending soon), sites that could not be checked, then ONE <table border="1" cellpadding="6" style="border-collapse:collapse"> with columns Book name | Category | Price | Site | Place / note | Link (link cell = <a href="URL">open</a>), same rows and same book-name order as step 3, and at the end a link to the artifact page.
-   - If no Gmail send tool is available (only drafts, or Gmail not connected to this task), do not create a draft; just say in both reports "HTML e-mail not sent – Gmail is not connected to this scheduled task". If sending fails, do not retry; say so.
+5. Daily e-mail via Gmail (grouped by book, NO table):
+   - Load the Gmail send tool: ToolSearch with query "gmail send", max_results 10 (the tool is mcp__Gmail__send_message). If it is not available, do not create a draft; say in both reports "E-mail not sent – Gmail is not connected to this scheduled task". If sending fails, do not retry; say so.
+   - To: the account owner's own e-mail address (the user e-mail given in this session's context). If no address is known, do not guess; skip sending and say so in both reports.
+   - Sender name: the Gmail tool cannot set a display name ("Comics scout"), so the e-mail goes out under the Gmail account's own name. Do not try workarounds.
+   - Subject: "Comics scout – DD/MM/YYYY" (today's date, Prague time, e.g. "Comics scout – 19/11/2026").
+   - Body: send both htmlBody (simple e-mail-safe HTML, inline styles only, no <table>, no <style> block, no scripts, no images) and body (the same content as plain text). Content, in this order:
+     a) heading "⚔️ Comics scout – DD/MM/YYYY";
+     b) one line: total offers and counts per category (Kolosální Conan, Mighty Boys, Banda, Criminal, Tales from the Crypt);
+     c) "Books found (A–Z)": a list with ONE LINE PER BOOK, sorted A–Z by book name. Group the day's listings by book: same title and volume; split editions that differ a lot in price (Přístav Země / Zatmění collector's vs normal, Trojka collector's vs normal); one line per Banda volume and per Criminal volume; Kolosální Conan vol. 1 separate from mixed bundle ads; a doubtful listing (marked CHECK) gets its own line with "⚠️ CHECK". Each line: **Book name** – N offers (+ M sold out, if any) – from <cheapest price> – <site, place> – link "open" to the cheapest offer. Sold-out shop items do not count as offers and are not used for "from" unless nothing else exists. A category with no finds gets one line "<Category> – nothing found";
+     d) one or two highlight lines (bargains as in step 6, auctions ending soon);
+     e) "Couldn't check:" with the sites that failed;
+     f) a link to the artifact page https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow ("All offers").
 6. Report every run, same facts in two places:
-   a) SendUserMessage (Markdown): a cover line "⚔️ COMICS SCOUT – D MONTH ⚔️", one short sentence of sword-and-sorcery narration, then ONE table (Markdown table, which the app renders as an HTML table) with columns Book name | Category | Price | Site | Link, containing every listing, SORTED ALPHABETICALLY BY BOOK NAME. Below the table: counts per category, highlights (KRAKK! for a bargain such as Kolosální Conan vol. 1 under ~30 000 Kč, Přístav Země / Zatmění or Trojka near the original price 1 969 Kč / 528 Kč, Banda under shop price; TICK-TOCK… for an auction ending soon), Comics Centrum news (e.g. a new Kolosální volume), SKREEE! for sites that could not be checked, whether the HTML e-mail was sent, and the artifact link.
-   b) PushNotification (push banner + plain-text e-mail, inside <routine_summary> tags, under ~300 words): first sentence a plain banner (e.g. "⚔️ 18 finds today – Kolosální Conan vol. 1 from 37 000 Kč on Bazoš"). Then the listings as one line each, SORTED ALPHABETICALLY BY BOOK NAME ("Book – price – site"; if more than ~25, list the cheapest per book name and say the full table is in the HTML e-mail / on the artifact page), sites that could not be checked, whether the HTML e-mail was sent, and the artifact link.
+   a) SendUserMessage (Markdown): a cover line "⚔️ COMICS SCOUT – D MONTH ⚔️", one short sentence of sword-and-sorcery narration, then ONE table (Markdown table, which the app renders as an HTML table) with columns Book name | Category | Price | Site | Link, containing every listing, SORTED ALPHABETICALLY BY BOOK NAME. Below the table: counts per category, highlights (KRAKK! for a bargain such as Kolosální Conan vol. 1 under ~30 000 Kč, Přístav Země / Zatmění or Trojka near the original price 1 969 Kč / 528 Kč, Banda or Criminal under shop price; TICK-TOCK… for an auction ending soon), Comics Centrum news (e.g. a new Kolosální volume), SKREEE! for sites that could not be checked, whether the e-mail was sent, and the artifact link.
+   b) PushNotification (push banner + plain-text e-mail, inside <routine_summary> tags, under ~300 words): first sentence a plain banner (e.g. "⚔️ 18 finds today – Kolosální Conan vol. 1 from 37 000 Kč on Bazoš"). Then the listings as one line each, SORTED ALPHABETICALLY BY BOOK NAME ("Book – price – site"; if more than ~25, list the cheapest per book name and say the full list is in the e-mail / on the artifact page), sites that could not be checked, whether the e-mail was sent, and the artifact link.
    Write any narration yourself; never quote Robert E. Howard or any comic. Prices, counts and URLs must be exact.
 7. If a site is blocked or anything fails, do not retry (except the single artifact version-conflict retry above); say what could not be checked.
 

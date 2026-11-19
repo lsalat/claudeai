@@ -23,3 +23,10 @@ banda komiks
 banda the boys
 banda ennis
 the boys ennis
+
+# Criminal = comic by Ed Brubaker & Sean Phillips, Czech edition only.
+# "criminal" alone is a common word, so it is always combined.
+criminal brubaker
+criminal komiks
+criminal phillips
+brubaker phillips

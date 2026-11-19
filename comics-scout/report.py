@@ -19,6 +19,15 @@ def cat(title, site="", url=""):
         has(t, "the boys", "theboys", "ennis", "karty jsou rozdan", "komiks", "crew")
         or (site == "arkham" and re.match(r"banda\b", t))):
         return "banda"
+    # Criminal by Ed Brubaker & Sean Phillips – Czech edition only, and the title must also name the authors or say it is a comic
+    # Book catalogues (searched by author too) often list it without the author, e.g. "Criminal – deluxe edice"
+    BOOKSHOPS = ("trhknih", "knihobot", "reknihy", "restorio", "antikavion", "antikvariaty", "arkham")
+    if (has(t, "criminal", "kriminál", "kriminal") and has(t, "brubaker", "phillips", "komiks", "comics", "comic")
+            or (site in BOOKSHOPS and re.match(r"criminal\b", t))) \
+            and not has(t, "volume", "vol.", "deluxe edition", "coward", "lawless", "the dead and the dying", "bad night",
+                        "the sinners", "last of the innocent", "wrong place", "bad weekend", "cruel summer", "image comics",
+                        "marvel", "icon", "english", "anglick", "my heroes", "kriminální", "kriminalni", "kriminalist"):
+        return "criminal"
     if has(t, "tales from the crypt", "crypt-keeper", "crypt keeper", "příběhy z krypty"): return "crypt"
     # Mighty Boys – only Přístav Země / Zatmění and Trojka
     if has(t, "přístav země", "pristav zeme"): return "mb"
@@ -40,7 +49,7 @@ def excluded_conan(title):
     return bool(re.search(r"kolosalni\s+conan\s*(?:c\.|vol\.?|kniha)?\s*[2-5]\b", t))
 NOISE = ["hell boys","hot boys","star wars","agent jfk","stmívání","garfield","xb-1","fantasy & science","harley","americký upír","comicsy v angličtině","conan doyl","pobřežní piráti","na stopě","crypto"]
 NAMES = {"trhknih":"Trh knih","knihobot":"Knihobot","reknihy":"Reknihy","restorio":"Restorio","antikavion":"Antikavion","bazos":"Bazoš","sbazar":"Sbazar","komiksbazar":"KomiksBazar","antikvariaty":"Antikvariaty.cz","arkham":"Arkham (shop)"}
-rows = {"conan":{}, "crypt":{}, "mb":{}, "banda":{}}; wanted = []; aukro = {"conan":[], "crypt":[], "mb":[], "banda":[]}
+rows = {"conan":{}, "crypt":{}, "mb":{}, "banda":{}, "criminal":{}}; wanted = []; aukro = {"conan":[], "crypt":[], "mb":[], "banda":[], "criminal":[]}
 for site, v in d.items():
     for term, items in v["results"].items():
         for it in items:
@@ -63,8 +72,8 @@ out = [f"COMICS SCOUT – ALL FINDINGS – {today}", "="*45,
  "Sites searched: Bazoš, Sbazar, KomiksBazar (ads + antiquarian offers incl. Aukro), Trh knih, Knihobot, Reknihy, Restorio, Antikavion, Antikvariaty.cz, Arkham.",
  "Not checked: Aukro directly (Cloudflare), ComicsDB Bazar (blocks bots), Facebook (excluded).",
  "Search noise removed. Prices as listed; Aukro prices may be current auction bids.", ""]
-titles = {"conan":"1) KOLOSÁLNÍ CONAN (Comics Centrum)", "crypt":"2) TALES FROM THE CRYPT", "mb":"3) MIGHTY BOYS (Přístav Země / Zatmění, Trojka)", "banda":"4) BANDA (The Boys, Garth Ennis – Czech edition)"}
-for c in ["conan","crypt","mb","banda"]:
+titles = {"conan":"1) KOLOSÁLNÍ CONAN (Comics Centrum)", "crypt":"2) TALES FROM THE CRYPT", "mb":"3) MIGHTY BOYS (Přístav Země / Zatmění, Trojka)", "banda":"4) BANDA (The Boys, Garth Ennis – Czech edition)", "criminal":"5) CRIMINAL (Ed Brubaker & Sean Phillips – Czech edition)"}
+for c in ["conan","crypt","mb","banda","criminal"]:
     out += ["-"*45, titles[c], "-"*45]
     any_ = False
     for site in ["Bazoš","Sbazar","KomiksBazar","Trh knih","Knihobot","Reknihy","Restorio","Antikavion","Antikvariaty.cz","Arkham (shop)"]:
