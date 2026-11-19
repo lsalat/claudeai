@@ -56,6 +56,9 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
 The page's code (Latest run + History tabs) is kept in `page/index.html` in this folder.
 Every run is stored as one document `runs/YYYY-MM-DD_HH-MM` in the Claude page's own database (one snapshot of all findings + which sites were checked/failed). The page's **History** tab builds one row per listing from these snapshots: first seen, last seen, price changes, and status – *active*, *gone* (missing although its site was checked successfully; likely sold) or *not checked* (its site failed since). Nothing is ever deleted. The History tab has a **Download CSV** button for backup/Excel. Capacity: ~7 KB per run, 25 000 documents / 100 MB per database – decades of daily runs; the page loads the newest 1 000 runs.
 
+## Supabase + Grafana (long-term history)
+After the Claude page and its history are updated, the run uploads the same data to a free Supabase Postgres database with `python3 comics-scout/supabase_push.py <run.json>` (secrets `SUPABASE_URL`, `SUPABASE_SECRET_KEY` from the environment; never print them). Grafana Cloud reads that database (read-only user `grafana_reader`) and shows the dashboard in `grafana/dashboard.json`: price trends per book, offers per run, bargains vs. limits, latest listings and full history, plus a price alert. Supabase keeps all data (no 14-day limit). Setup steps: `grafana/SETUP.md`. A failed upload never stops the run; it is reported as "Supabase not updated – …".
+
 ## Daily e-mail
 No Gmail or other e-mail connector is used. The e-mail is Claude's own automatic summary e-mail (from the scheduled task's PushNotification): plain text, one line per book (offers, cheapest price, site, link), sites that could not be checked and a link to the Claude page. Its sender and subject are set by Claude. Details: `claude_scheduler.txt`, step 6b.
 

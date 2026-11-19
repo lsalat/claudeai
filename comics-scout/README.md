@@ -74,3 +74,6 @@ Only some sites or terms: `python3 scout.py "kolosální conan" --sites bazos,sb
 
 ## The Claude page (`page/index.html`)
 `page/index.html` is a copy of the Claude page "Comics scout – latest findings" (https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow), kept here as the source of its logic: the **Latest run** tab and the **History** tab (built from the `runs/` documents in the page's database; hides sold-out items). The daily run only replaces the JSON in `<script id="scout-data">` on the live page; it does not change this file. When the page's logic is changed, this copy is updated too.
+
+## Grafana dashboard (Supabase)
+Every run is also uploaded to a free Supabase Postgres database (`supabase_push.py`), which Grafana Cloud reads: price trends per book, offers per run, bargains below your limits (with alerts), latest listings and full history. No 14-day limit, because the data lives in Supabase. One-time setup: [`grafana/SETUP.md`](grafana/SETUP.md).
