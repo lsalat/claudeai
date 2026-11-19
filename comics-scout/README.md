@@ -71,3 +71,6 @@ py report.py results.json "history/listings-$(Get-Date -Format yyyy-MM-dd).txt"
 ```
 
 Only some sites or terms: `python3 scout.py "kolosální conan" --sites bazos,sbazar`
+
+## The Claude page (`page/index.html`)
+`page/index.html` is a copy of the Claude page "Comics scout – latest findings" (https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow), kept here as the source of its logic: the **Latest run** tab and the **History** tab (built from the `runs/` documents in the page's database; hides sold-out items). The daily run only replaces the JSON in `<script id="scout-data">` on the live page; it does not change this file. When the page's logic is changed, this copy is updated too.

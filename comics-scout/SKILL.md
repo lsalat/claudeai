@@ -53,6 +53,7 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
    - The first sentence of the PushNotification is a plain, informative banner (e.g. `⚔️ 18 finds today – Kolosální Conan vol. 1 from 37 000 Kč on Bazoš!`). Keep the e-mail under ~300 words, plain text (no Markdown tables).
 
 ## History database
+The page's code (Latest run + History tabs) is kept in `page/index.html` in this folder.
 Every run is stored as one document `runs/YYYY-MM-DD_HH-MM` in the Claude page's own database (one snapshot of all findings + which sites were checked/failed). The page's **History** tab builds one row per listing from these snapshots: first seen, last seen, price changes, and status – *active*, *gone* (missing although its site was checked successfully; likely sold) or *not checked* (its site failed since). Nothing is ever deleted. The History tab has a **Download CSV** button for backup/Excel. Capacity: ~7 KB per run, 25 000 documents / 100 MB per database – decades of daily runs; the page loads the newest 1 000 runs.
 
 ## Daily e-mail

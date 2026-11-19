@@ -1,0 +1,630 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comics scout – latest findings</title>
+<style>
+  :root{--bg:#f7f5f0;--card:#fff;--ink:#1d1b18;--muted:#6b665d;--line:#e4dfd4;--accent:#b4441c;--chip:#efe9dd}
+  @media (prefers-color-scheme:dark){:root{--bg:#171614;--card:#211f1c;--ink:#ece8e0;--muted:#a39d92;--line:#36322c;--accent:#f08a5d;--chip:#2c2925}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px 16px 48px}
+  h1{font-size:24px;margin:0 0 4px}
+  .sub{color:var(--muted);margin:0 0 16px}
+  .note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px;margin:0 0 16px}
+  .stats{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:130px}
+  .stat b{display:block;font-size:22px}
+  .stat span{color:var(--muted);font-size:13px}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px}
+  .tab{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;font:inherit}
+  .tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  input[type=search],select{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+  input[type=search]{flex:1;min-width:160px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:var(--chip)}
+  td.price{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+  th.price{text-align:right}
+  a{color:var(--accent)}
+  .chip{display:inline-block;background:var(--chip);border-radius:4px;padding:1px 6px;font-size:12px;color:var(--muted)}
+  .empty{padding:20px;text-align:center;color:var(--muted)}
+  .sites{margin-top:20px;color:var(--muted);font-size:13px}
+  .sites b{color:var(--ink)}
+  @media (max-width:640px){
+    thead{display:none}
+    table,tbody,tr,td{display:block;width:100%}
+    tr{border-bottom:1px solid var(--line);padding:8px 0}
+    td{border:0;padding:2px 12px}
+    td.price{text-align:left}
+  }
+  .views{display:flex;gap:6px;margin:0 0 16px}
+  .views .tab{font-weight:600}
+  .st-active{color:#2e7d32}.st-gone{color:var(--muted);text-decoration:line-through}.st-unk{color:#a86b00}
+  @media (prefers-color-scheme:dark){.st-active{color:#7fd08a}.st-unk{color:#e0b050}}
+  .hist-row td{background:var(--chip);font-size:13px}
+  .toggle{border:0;background:none;color:var(--accent);cursor:pointer;font:inherit;padding:0}
+  .btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer;font:inherit}
+  .down{color:#2e7d32}.up{color:#b4441c}
+  .muted{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Comics scout – latest findings</h1>
+  <div class="views"><button class="tab" type="button" id="v-latest" aria-pressed="true">Latest run</button><button class="tab" type="button" id="v-hist" aria-pressed="false">History</button></div>
+  <section id="latest">
+  <p class="sub" id="sub"></p>
+  <div class="note" id="note" hidden></div>
+  <div class="stats" id="stats"></div>
+  <div class="controls">
+    <div id="tabs" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    <input type="search" id="q" placeholder="Filter by title, site, place…" aria-label="Filter">
+    <select id="sort" aria-label="Sort">
+      <option value="name">Sort: book name</option>
+      <option value="cat">Sort: category</option>
+      <option value="asc">Price: low → high</option>
+      <option value="desc">Price: high → low</option>
+    </select>
+  </div>
+  <table>
+    <thead><tr><th>Title</th><th>Category</th><th>Site</th><th>Place / note</th><th class="price">Price</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <div class="sites" id="sites"></div>
+  </section>
+  <section id="history" hidden>
+    <p class="sub" id="h-sub">Loading history…</p>
+    <div class="stats" id="h-stats"></div>
+    <div class="controls">
+      <div id="h-tabs" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+      <select id="h-status" aria-label="Status">
+        <option value="all">All listings</option>
+        <option value="active">Active</option>
+        <option value="gone">Gone</option>
+        <option value="changed">Price changed</option>
+      </select>
+      <input type="search" id="h-q" placeholder="Filter by title, site, place…" aria-label="Filter history">
+      <select id="h-sort" aria-label="Sort history">
+        <option value="name">Sort: book name</option>
+        <option value="first">First seen: newest</option>
+        <option value="last">Last seen: newest</option>
+        <option value="asc">Price: low → high</option>
+      </select>
+      <button class="btn" type="button" id="h-csv">Download CSV</button>
+    </div>
+    <table>
+      <thead><tr><th>Title</th><th>Category</th><th>Site</th><th>First seen</th><th>Last seen</th><th>Status</th><th class="price">Price now</th><th class="price">Change</th></tr></thead>
+      <tbody id="h-rows"></tbody>
+    </table>
+    <p class="muted" id="h-foot"></p>
+  </section>
+</div>
+
+<!-- SCOUT-DATA: the daily run replaces only the JSON inside this script tag. -->
+<script id="scout-data" type="application/json">
+{
+ "date": "2026-11-19",
+ "timestamp": "2026-11-19 14:59",
+ "note": "Arkham stopped partway (HTTP 403) – some Arkham results may be missing.",
+ "sites_checked": [
+  "Bazoš",
+  "Sbazar",
+  "KomiksBazar (incl. Aukro)",
+  "Trh knih",
+  "Knihobot",
+  "Reknihy",
+  "Restorio",
+  "Antikavion",
+  "Antikvariaty.cz",
+  "Arkham (partial)"
+ ],
+ "sites_failed": [
+  "Arkham (partly – HTTP 403)",
+  "Aukro directly",
+  "ComicsDB Bazar"
+ ],
+ "items": [
+  {
+   "cat": "Mighty Boys",
+   "title": "Agent strachu, Mighty Boys, Přístav Země",
+   "price": 1200,
+   "price_text": "1 200 Kč",
+   "site": "Bazoš",
+   "place": "Ostrava · 17.11. 2026 · CHECK: maybe Agent strachu, not Přístav Země",
+   "url": "https://knihy.bazos.cz/inzerat/226585995/agent-strachu-mighty-boys-pristav-zeme.php"
+  },
+  {
+   "cat": "Banda",
+   "title": "Banda 1: Karty jsou rozdaný",
+   "price": 1000,
+   "price_text": "1 000 Kč",
+   "site": "Bazoš",
+   "place": "Liberec · 9.11. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/225917391/prodam-komiks-banda-theboys-1-karty-jsou-rozdany-cz.php"
+  },
+  {
+   "cat": "Banda",
+   "title": "Banda 1: Karty jsou rozdaný",
+   "price": 1709,
+   "price_text": "from 1709 Kč",
+   "site": "Knihobot",
+   "place": "3 copies in stock",
+   "url": "https://knihobot.cz/g/111526"
+  },
+  {
+   "cat": "Banda",
+   "title": "Banda 2: Nakládačka",
+   "price": 889,
+   "price_text": "from 889 Kč",
+   "site": "Knihobot",
+   "place": "2 copies in stock",
+   "url": "https://knihobot.cz/g/122732"
+  },
+  {
+   "cat": "Criminal",
+   "title": "Criminal (2022 volume)",
+   "price": 849,
+   "price_text": "849 Kč",
+   "site": "Antikavion",
+   "place": "2022",
+   "url": "https://www.antikavion.cz/kniha/criminal-ed-brubaker-2022?produkt=1006124"
+  },
+  {
+   "cat": "Criminal",
+   "title": "Criminal 1: Každý je zločinec",
+   "price": 989,
+   "price_text": "from 989 Kč",
+   "site": "Trh knih",
+   "place": "2021 · lowest offer",
+   "url": "https://www.trhknih.cz/kniha/cfsi5dlwqhws"
+  },
+  {
+   "cat": "Criminal",
+   "title": "Criminal 1: Každý je zločinec (deluxe edice)",
+   "price": 599,
+   "price_text": "599 Kč",
+   "site": "Aukro (via KomiksBazar)",
+   "place": "Aukro – price may be current bid",
+   "url": "https://www.aukro.cz/criminal-1-kazdy-je-zlocinec-deluxe-edice-brubaker-phillips-20175-7108082168"
+  },
+  {
+   "cat": "Criminal",
+   "title": "Criminal 3: Noční rozhodnutí",
+   "price": 1238,
+   "price_text": "from 1238 Kč",
+   "site": "Trh knih",
+   "place": "2022 · lowest offer",
+   "url": "https://www.trhknih.cz/kniha/1499zv5wc6h4m"
+  },
+  {
+   "cat": "Criminal",
+   "title": "Criminal – deluxe edice (1)",
+   "price": 1100,
+   "price_text": "from 1100 Kč",
+   "site": "Trh knih",
+   "place": "2012 · lowest offer",
+   "url": "https://www.trhknih.cz/kniha/34arlcmy"
+  },
+  {
+   "cat": "Criminal",
+   "title": "Criminal – deluxe edice 2",
+   "price": 849,
+   "price_text": "849 Kč",
+   "site": "Antikavion",
+   "place": "2015",
+   "url": "https://www.antikavion.cz/kniha/criminal-ed-brubaker-2015?produkt=991615"
+  },
+  {
+   "cat": "Criminal",
+   "title": "Criminal: Poslední z nevinných",
+   "price": 750,
+   "price_text": "from 750 Kč",
+   "site": "Trh knih",
+   "place": "2015 · lowest offer",
+   "url": "https://www.trhknih.cz/kniha/1hh2hdh8sc"
+  },
+  {
+   "cat": "Kolosální Conan",
+   "title": "Kolosální Conan",
+   "price": 37000,
+   "price_text": "37 000 Kč",
+   "site": "Bazoš",
+   "place": "Praha 2 · 5.11. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/226053878/kolosalni-conan.php"
+  },
+  {
+   "cat": "Kolosální Conan",
+   "title": "Kolosální Conan",
+   "price": 45000,
+   "price_text": "45 000 Kč",
+   "site": "Bazoš",
+   "place": "Liberec · 28.10. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/225677484/kolosalni-conan.php"
+  },
+  {
+   "cat": "Kolosální Conan",
+   "title": "Kolosální Conan",
+   "price": 50000,
+   "price_text": "50 000 Kč",
+   "site": "Bazoš",
+   "place": "Ústí nad Orlicí · 28.10. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/225682116/kolosalni-conan.php"
+  },
+  {
+   "cat": "Kolosální Conan",
+   "title": "Kolosální Conan 1",
+   "price": 3500,
+   "price_text": "3 500 Kč",
+   "site": "Arkham",
+   "place": "Vyprodáno (sold out)",
+   "url": "https://www.arkham.cz/kolosalni-conan-1/"
+  },
+  {
+   "cat": "Kolosální Conan",
+   "title": "Komiksy, kolosalní knihy, Comics Centrum, limitované komiksy (bundle)",
+   "price": null,
+   "price_text": "V textu",
+   "site": "Bazoš",
+   "place": "Brno · 16.11. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/226537967/komiksy.php"
+  },
+  {
+   "cat": "Kolosální Conan",
+   "title": "Lovci monster, Kolosální Conan, Temný elf atd (bundle)",
+   "price": null,
+   "price_text": "Dohodou",
+   "site": "Sbazar",
+   "place": "Chrudim",
+   "url": "https://www.sbazar.cz/inzerat/233156211-lovci-monster-kolosalni-conantemny-elf-atd"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění (edition not stated)",
+   "price": 19999,
+   "price_text": "19 999 Kč",
+   "site": "Bazoš",
+   "place": "Praha 4 · 8.10. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/224797382/pristav-zeme-zatmeni-zack-kaplan-mighty-boys.php"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění (edition not stated)",
+   "price": 19999,
+   "price_text": "19 999 Kč",
+   "site": "Sbazar",
+   "place": "Praha, Libuš",
+   "url": "https://www.sbazar.cz/inzerat/225630133-pristav-zeme-zatmeni-mighty-boys"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění (nové, edition not stated)",
+   "price": 16500,
+   "price_text": "16 500 Kč",
+   "site": "Bazoš",
+   "place": "Cheb · 31.10. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/225795741/cz-komiks-kniha-zack-kaplan-pristav-zeme-zatmeni-nove.php"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění (sběratelská verze)",
+   "price": 11000,
+   "price_text": "11 000 Kč",
+   "site": "Bazoš",
+   "place": "Ostrava · 19.10. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/225271551/pristav-zeme-zatmeni-sberatelska-verze-zack-kaplan.php"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění SE",
+   "price": 19999,
+   "price_text": "19 999 Kč",
+   "site": "Bazoš",
+   "place": "Praha 4 · 8.10. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/224797376/pristav-zeme-zatmeni-se-zack-kaplan-mighty-boys.php"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění SE (nový)",
+   "price": 14000,
+   "price_text": "14 000 Kč",
+   "site": "Bazoš",
+   "place": "Praha 7 · 1.11. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/225833092/pristav-zeme-zatmeni-se-zack-kaplan-novy.php"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění – limitka",
+   "price": 17990,
+   "price_text": "17 990 Kč",
+   "site": "Aukro (via KomiksBazar)",
+   "place": "Aukro – price may be current bid",
+   "url": "https://www.aukro.cz/komiks-pristav-zeme-zatmeni-zack-kaplan-limitka-7120814065"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění – sběratelská edice",
+   "price": 8000,
+   "price_text": "8 000 Kč",
+   "site": "Aukro (via KomiksBazar)",
+   "place": "Aukro – price may be current bid",
+   "url": "https://www.aukro.cz/pristav-zeme-zatmeni-zack-kaplan-sberatelska-edice-7140733472"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění, sběratelská verze",
+   "price": 12222,
+   "price_text": "12 222 Kč",
+   "site": "Bazoš",
+   "place": "Praha 4 · 5.11. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/226053189/agent-strachu-sberatelska-verze-mighty-boys.php"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Přístav Země / Zatmění, sběratelská verze",
+   "price": 12222,
+   "price_text": "12 222 Kč",
+   "site": "Sbazar",
+   "place": "Praha, Libuš",
+   "url": "https://www.sbazar.cz/inzerat/235582221-pristav-zemezatmenisberatelska-verzemighty-boys"
+  },
+  {
+   "cat": "Mighty Boys",
+   "title": "Trojka – sběratelská edice (zabalená)",
+   "price": 3333,
+   "price_text": "3 333 Kč",
+   "site": "Bazoš",
+   "place": "Litoměřice · 12.11. 2026",
+   "url": "https://knihy.bazos.cz/inzerat/226339584/trojka-sberatelska-edice-zabalena-mighty-boys-k-gillen.php"
+  }
+ ]
+}
+</script>
+
+<script>
+(function(){
+  var D;
+  try { D = JSON.parse(document.getElementById('scout-data').textContent); }
+  catch(e){ D = {date:'', items:[], sites_checked:[], sites_failed:[], note:'Could not read the data block.'}; }
+  var CATS = ['Mighty Boys','Tales from the Crypt','Kolosální Conan','Banda','Criminal'];
+  var SOLD = /vyprod|nedostupn|není skladem|neni skladem|sold out|out of stock/i;
+  var items = (D.items||[]).filter(function(i){ return !SOLD.test([i.title,i.price_text,i.place].join(' ')); });
+  var state = {cat:'All', q:'', sort:'name'};
+  var fmt = function(n){ return n==null ? '—' : n.toLocaleString('cs-CZ') + ' Kč'; };
+
+  function el(tag, attrs, text){
+    var e = document.createElement(tag);
+    if (attrs) for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  document.getElementById('sub').textContent =
+    (D.timestamp ? 'Scout run of ' + D.timestamp + ' (Prague time)' : (D.date ? 'Scout run of ' + D.date : 'No run yet')) + ' · ' + items.length + ' listings';
+  if (D.note){ var n=document.getElementById('note'); n.textContent=D.note; n.hidden=false; }
+
+  var stats = document.getElementById('stats');
+  CATS.forEach(function(c){
+    var list = items.filter(function(i){return i.cat===c;});
+    var prices = list.map(function(i){return i.price;}).filter(function(p){return typeof p==='number';});
+    var s = el('div',{class:'stat'});
+    s.appendChild(el('b',null,String(list.length)));
+    s.appendChild(el('span',null,c + (prices.length ? ' · from ' + fmt(Math.min.apply(null,prices)) : '')));
+    stats.appendChild(s);
+  });
+
+  var tabs = document.getElementById('tabs');
+  ['All'].concat(CATS).forEach(function(c){
+    var b = el('button',{class:'tab',type:'button','aria-pressed':String(c===state.cat)},c);
+    b.addEventListener('click',function(){
+      state.cat=c;
+      [].forEach.call(tabs.children,function(x){x.setAttribute('aria-pressed',String(x===b));});
+      render();
+    });
+    tabs.appendChild(b);
+  });
+  document.getElementById('q').addEventListener('input',function(e){state.q=e.target.value.toLowerCase();render();});
+  document.getElementById('sort').addEventListener('change',function(e){state.sort=e.target.value;render();});
+
+  function render(){
+    var tb = document.getElementById('rows'); tb.textContent='';
+    var list = items.filter(function(i){
+      if (state.cat!=='All' && i.cat!==state.cat) return false;
+      if (!state.q) return true;
+      return [i.title,i.site,i.place,i.cat].join(' ').toLowerCase().indexOf(state.q) !== -1;
+    });
+    var big = Number.MAX_SAFE_INTEGER;
+    list.sort(function(a,b){
+      if (state.sort==='name') return String(a.title).localeCompare(String(b.title),'cs',{sensitivity:'base'});
+      if (state.sort==='asc') return (a.price==null?big:a.price)-(b.price==null?big:b.price);
+      if (state.sort==='desc') return (b.price==null?-1:b.price)-(a.price==null?-1:a.price);
+      return CATS.indexOf(a.cat)-CATS.indexOf(b.cat) || String(a.site).localeCompare(String(b.site)) || (a.price||0)-(b.price||0);
+    });
+    if (!list.length){
+      var tr=el('tr'); var td=el('td',{colspan:'5',class:'empty'},
+        state.cat==='Tales from the Crypt' && !state.q ? 'No Tales from the Crypt comics found in this run.' : 'No listings match.');
+      tr.appendChild(td); tb.appendChild(tr); return;
+    }
+    list.forEach(function(i){
+      var tr = el('tr');
+      var t = el('td'); var a = el('a',{href:i.url,target:'_blank',rel:'noopener'},i.title); t.appendChild(a); tr.appendChild(t);
+      var c = el('td'); c.appendChild(el('span',{class:'chip'},i.cat)); tr.appendChild(c);
+      tr.appendChild(el('td',null,i.site||''));
+      tr.appendChild(el('td',null,i.place||''));
+      tr.appendChild(el('td',{class:'price'},i.price_text || fmt(i.price)));
+      tb.appendChild(tr);
+    });
+  }
+  render();
+
+  var sites = document.getElementById('sites');
+  if ((D.sites_checked||[]).length){
+    sites.appendChild(el('b',null,'Checked: '));
+    sites.appendChild(document.createTextNode(D.sites_checked.join(', ')));
+  }
+  if ((D.sites_failed||[]).length){
+    sites.appendChild(el('br'));
+    sites.appendChild(el('b',null,'Could not check: '));
+    sites.appendChild(document.createTextNode(D.sites_failed.join(', ')));
+  }
+})();
+</script>
+<script>
+(function(){
+  var CATS=['Mighty Boys','Tales from the Crypt','Kolosální Conan','Banda','Criminal'];
+  var vL=document.getElementById('v-latest'), vH=document.getElementById('v-hist');
+  var started=false;
+  function show(h){
+    document.getElementById('latest').hidden=h; document.getElementById('history').hidden=!h;
+    vL.setAttribute('aria-pressed',String(!h)); vH.setAttribute('aria-pressed',String(h));
+    if(h && !started){ started=true; load(); }
+  }
+  vL.addEventListener('click',function(){show(false);}); vH.addEventListener('click',function(){show(true);});
+
+  var L=[], RUNS=[], st={cat:'All',q:'',status:'all',sort:'name'}, openRows={};
+  function el(tag,attrs,text){var e=document.createElement(tag); if(attrs) for(var k in attrs) e.setAttribute(k,attrs[k]); if(text!=null) e.textContent=text; return e;}
+  function fmt(n){return n==null?'—':Number(n).toLocaleString('cs-CZ')+' Kč';}
+  function d(ts){var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(String(ts||'')); return m? m[3]+'/'+m[2]+'/'+m[1] : String(ts||'');}
+  function norm(u){try{var x=new URL(u);return (x.hostname.replace(/^www\./,'')+x.pathname.replace(/\/$/,'')+x.search).toLowerCase();}catch(e){return String(u||'').toLowerCase();}}
+  function key(n){return String(n||'').toLowerCase().replace(/\(.*?\)/g,' ').trim().split(/[\s,]+/)[0]||'';}
+  function siteKey(site){var s=String(site||'').toLowerCase(); return s.indexOf('komiksbazar')>=0 ? 'komiksbazar' : key(site);}
+  function okSites(r){
+    var bad={}; (r.sites_failed||[]).forEach(function(n){bad[key(n)]=1;});
+    var ok={}; (r.sites_checked||[]).forEach(function(n){var k=key(n); if(/partial/i.test(n)||bad[k]) return; ok[k]=1;});
+    return ok;
+  }
+  function build(){
+    RUNS.sort(function(a,b){return String(a.timestamp).localeCompare(String(b.timestamp));});
+    var ok=RUNS.map(okSites), map={};
+    RUNS.forEach(function(r,ri){
+      (r.items||[]).forEach(function(i){
+        if(!i||!i.url) return;
+        if(/vyprod|nedostupn|není skladem|neni skladem|sold out|out of stock/i.test([i.title,i.price_text,i.place].join(' '))) return;
+        var k=norm(i.url), l=map[k];
+        if(!l) l=map[k]={k:k,first:r.timestamp,firstRun:ri,prices:[],seen:0,lastRun:-1};
+        if(l.lastRun!==ri) l.seen++;
+        l.lastRun=ri; l.last=r.timestamp;
+        l.url=i.url; l.cat=i.cat; l.title=i.title; l.site=i.site; l.place=i.place||'';
+        var pt=i.price_text||(typeof i.price==='number'?fmt(i.price):'—');
+        var p=l.prices[l.prices.length-1];
+        if(!p||p.text!==pt) l.prices.push({ts:r.timestamp,price:(typeof i.price==='number'?i.price:null),text:pt});
+        l.price=(typeof i.price==='number'?i.price:null); l.price_text=pt;
+      });
+    });
+    var N=RUNS.length;
+    L=Object.keys(map).map(function(k){
+      var l=map[k];
+      if(l.lastRun===N-1){ l.status='active'; }
+      else {
+        l.status='unknown';
+        for(var j=l.lastRun+1;j<N;j++){ if(ok[j][siteKey(l.site)]){ l.status='gone'; l.goneSince=RUNS[j].timestamp; break; } }
+      }
+      var nums=l.prices.filter(function(p){return p.price!=null;});
+      l.firstPrice=nums.length?nums[0].price:null;
+      l.change=(nums.length>1 && l.price!=null)? l.price-nums[0].price : 0;
+      return l;
+    });
+  }
+  function statusText(l){return l.status==='active'?'Active':l.status==='gone'?'Gone since '+d(l.goneSince):'Not checked';}
+  function filtered(){
+    var q=st.q;
+    var list=L.filter(function(l){
+      if(st.cat!=='All'&&l.cat!==st.cat) return false;
+      if(st.status==='active'&&l.status!=='active') return false;
+      if(st.status==='gone'&&l.status!=='gone') return false;
+      if(st.status==='changed'&&l.prices.length<2) return false;
+      if(q && [l.title,l.site,l.place,l.cat].join(' ').toLowerCase().indexOf(q)===-1) return false;
+      return true;
+    });
+    var big=Number.MAX_SAFE_INTEGER;
+    list.sort(function(a,b){
+      if(st.sort==='first') return String(b.first).localeCompare(String(a.first));
+      if(st.sort==='last') return String(b.last).localeCompare(String(a.last));
+      if(st.sort==='asc') return (a.price==null?big:a.price)-(b.price==null?big:b.price);
+      return String(a.title).localeCompare(String(b.title),'cs',{sensitivity:'base'});
+    });
+    return list;
+  }
+  function render(){
+    var tb=document.getElementById('h-rows'); tb.textContent='';
+    var list=filtered();
+    if(!list.length){var tr=el('tr'); tr.appendChild(el('td',{colspan:'8',class:'empty'},L.length?'No listings match.':'No history yet.')); tb.appendChild(tr); return;}
+    list.forEach(function(l){
+      var tr=el('tr');
+      var t=el('td'); t.appendChild(el('a',{href:l.url,target:'_blank',rel:'noopener'},l.title));
+      if(l.prices.length>1){ t.appendChild(document.createTextNode(' ')); var b=el('button',{class:'toggle',type:'button'},(openRows[l.k]?'▾':'▸')+' '+l.prices.length+' prices');
+        b.addEventListener('click',function(){openRows[l.k]=!openRows[l.k]; render();}); t.appendChild(b); }
+      tr.appendChild(t);
+      var c=el('td'); c.appendChild(el('span',{class:'chip'},l.cat)); tr.appendChild(c);
+      tr.appendChild(el('td',null,l.site+(l.place?' · '+l.place:'')));
+      tr.appendChild(el('td',null,d(l.first)));
+      tr.appendChild(el('td',null,d(l.last)));
+      tr.appendChild(el('td',{class:l.status==='active'?'st-active':l.status==='gone'?'st-gone':'st-unk'},statusText(l)));
+      tr.appendChild(el('td',{class:'price'},l.price_text));
+      var ch=el('td',{class:'price'+(l.change<0?' down':l.change>0?' up':'')}, l.change? (l.change>0?'+':'−')+fmt(Math.abs(l.change)) : '');
+      tr.appendChild(ch);
+      tb.appendChild(tr);
+      if(openRows[l.k]){
+        var hr=el('tr',{class:'hist-row'}); var td=el('td',{colspan:'8'});
+        td.textContent='Price history: '+l.prices.map(function(p){return d(p.ts)+' – '+p.text;}).join('  →  ');
+        hr.appendChild(td); tb.appendChild(hr);
+      }
+    });
+  }
+  function stats(){
+    var box=document.getElementById('h-stats'); box.textContent='';
+    var a=L.filter(function(l){return l.status==='active';}).length, g=L.filter(function(l){return l.status==='gone';}).length,
+        c=L.filter(function(l){return l.prices.length>1;}).length;
+    [[L.length,'listings ever found'],[a,'active now'],[g,'gone (likely sold)'],[c,'with price changes']].forEach(function(x){
+      var s=el('div',{class:'stat'}); s.appendChild(el('b',null,String(x[0]))); s.appendChild(el('span',null,x[1])); box.appendChild(s);});
+    document.getElementById('h-sub').textContent = RUNS.length ? RUNS.length+' scout runs, '+d(RUNS[0].timestamp)+' – '+d(RUNS[RUNS.length-1].timestamp)+' (latest '+RUNS[RUNS.length-1].timestamp+')' : 'No runs saved yet.';
+    document.getElementById('h-foot').textContent='"Gone" = not found in a later run although its site was checked successfully. "Not checked" = missing from the latest run, but its site failed or was only partly checked since.';
+  }
+  function setup(){
+    var tabs=document.getElementById('h-tabs');
+    ['All'].concat(CATS).forEach(function(c){
+      var b=el('button',{class:'tab',type:'button','aria-pressed':String(c===st.cat)},c);
+      b.addEventListener('click',function(){st.cat=c;[].forEach.call(tabs.children,function(x){x.setAttribute('aria-pressed',String(x===b));});render();});
+      tabs.appendChild(b);
+    });
+    document.getElementById('h-q').addEventListener('input',function(e){st.q=e.target.value.toLowerCase();render();});
+    document.getElementById('h-status').addEventListener('change',function(e){st.status=e.target.value;render();});
+    document.getElementById('h-sort').addEventListener('change',function(e){st.sort=e.target.value;render();});
+    document.getElementById('h-csv').addEventListener('click',csv);
+  }
+  function q(v){v=v==null?'':String(v); return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
+  async function csv(){
+    var head=['status','category','title','site','place','first_seen','last_seen','gone_since','price_now','price_now_text','first_price','price_changes','price_history','url'];
+    var rows=[head.join(',')].concat(filtered().map(function(l){
+      return [l.status,l.cat,l.title,l.site,l.place,d(l.first),d(l.last),l.goneSince?d(l.goneSince):'',l.price==null?'':l.price,l.price_text,l.firstPrice==null?'':l.firstPrice,l.prices.length-1,
+        l.prices.map(function(p){return d(p.ts)+': '+p.text;}).join(' | '),l.url].map(q).join(',');
+    }));
+    var text='﻿'+rows.join('\r\n'), name='comics-scout-history-'+new Date().toISOString().slice(0,10)+'.csv';
+    try{
+      var dl=await claude.use('downloads');
+      if(dl){ await dl.save({filename:name,data:new Blob([text],{type:'text/csv'})}); return; }
+    }catch(e){ if(e&&e.code==='cancelled') return; }
+    var a=el('a',{href:'data:text/csv;charset=utf-8,'+encodeURIComponent(text),download:name}); document.body.appendChild(a); a.click(); a.remove();
+  }
+  async function load(){
+    setup();
+    var sub=document.getElementById('h-sub');
+    var timer=setTimeout(function(){ sub.textContent='The history database cannot be reached yet…'; },10000);
+    var db=null;
+    try{ db=await claude.use('db'); }catch(e){}
+    if(!db){ clearTimeout(timer); sub.textContent='History is not available in this view (open the page in Claude while signed in).'; render(); return; }
+    try{
+      var snap=await db.collection('runs').orderBy('timestamp','desc').limit(1000).get();
+      clearTimeout(timer);
+      RUNS=snap.docs.filter(function(x){return x.exists;}).map(function(x){return x.data();});
+      build(); stats(); render();
+    }catch(e){ clearTimeout(timer); sub.textContent='Could not load the history ('+(e&&e.code||'error')+').'; render(); }
+  }
+})();
+</script>
+</body>
+</html>
+
+</body></html>
