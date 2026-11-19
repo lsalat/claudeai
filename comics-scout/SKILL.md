@@ -22,16 +22,13 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
    - Sites: Bazoš, Sbazar, KomiksBazar (collector ads + antiquarian offers, which also include many **Aukro** listings), Trh knih, Knihobot, Reknihy, Restorio, Antikavion, Antikvariaty.cz, Arkham.
    - Each site pauses 2–6 s between requests and stops at its first error/block. Exit code 2 means at least one site stopped – check the `status` field per site and report it. Never retry a blocked site.
 
-3. **Publisher shop** (WebFetch):
-   - https://www.comicscentrum.cz/e-shop/kolosalni-knihy – price and availability of Kolosální Conan vol. 1 and any new volume (skip the excluded volumes 2–5).
-   - Do **not** check mightyboys.cz – removed from the scout on 2026-11-19.
+3. **Publisher shops** – none. mightyboys.cz and comicscentrum.cz are **not** checked (removed from the scout on 2026-11-19).
 
 4. **Build the daily file:**
    `python3 report.py /tmp/results.json history/listings-YYYY-MM-DD.txt` (today's date, Prague time).
    Then open the file and review it:
    - remove anything that is clearly not one of the wanted comics (the script removes known noise, but new noise can appear),
    - remove any excluded Conan volume the script missed (z Cimerie, Král aquilonský, Kapitán pirátů, Mstitel, vol. 2–5),
-   - add a section "PUBLISHER SHOP" with the findings from step 3,
    - mark suspiciously cheap listings with `CHECK:`.
    If a file for today already exists, overwrite it.
 
@@ -43,13 +40,13 @@ Write ALL findings to a fresh dated file. Do **not** compare with earlier days.
    - Read it with `read_artifact` (gives the HTML and the live version).
    - Replace ONLY the JSON inside `<script id="scout-data" type="application/json"> ... </script>`; keep everything else unchanged.
    - JSON shape: `{"date": "YYYY-MM-DD", "timestamp": "YYYY-MM-DD HH:MM" (Prague time, `TZ=Europe/Prague date '+%Y-%m-%d %H:%M'`), "note": "", "sites_checked": [...], "sites_failed": [...], "items": [{"cat": "Mighty Boys" | "Tales from the Crypt" | "Kolosální Conan" | "Banda" | "Criminal", "title": "short title incl. edition", "price": number in Kč or null, "price_text": "price as shown", "site": "site name", "place": "location or short note", "url": "listing URL"}]}`
-   - Include every listing from today's file, plus comicscentrum.cz shop items (site = shop name, place = stock status). Leave `note` empty unless something important needs saying (e.g. a site could not be checked).
+   - Include every listing from today's file. Leave `note` empty unless something important needs saying (e.g. a site could not be checked).
    - Publish the full updated HTML with `publish_version` (slug + `base_version` from `read_artifact`; omit title and icon). On a version conflict, read again and retry once.
    - If the scout itself failed, still update the page: keep the old items, set `date` and `timestamp` to now and `note` to a one-line explanation of what failed.
 
 7. **Report – in Conan comic style.** Send the report twice: with SendUserMessage (Markdown) and with PushNotification (this one becomes the push banner and the e-mail, so it must be sent every run, inside `<routine_summary>` tags). Same facts in both.
    - **Style:** a short sword-and-sorcery comic issue. Cover headline in capitals with ⚔️ (e.g. `⚔️ COMICS SCOUT – THE HUNT OF 19 NOVEMBER ⚔️`), narrator caption boxes in an old-chronicle voice (in Markdown use `>` blockquotes; in the e-mail use lines framed like `【 … 】`), one "panel" per category with a bold/CAPS heading and a 💰 loot list, sound effects for highlights (`KRAKK!` for a bargain, `TICK-TOCK…` for an auction ending soon, `SKREEE!` for a blocked site), and a closing `NEXT ISSUE: …` line. Write the narration yourself – never quote Robert E. Howard or any comic.
-   - **The facts stay exact and complete:** number of listings per category and per site; the most interesting finds – cheapest offer per title, anything clearly below normal price (e.g. Kolosální Conan vol. 1 under ~30 000 Kč, Přístav Země / Zatmění or Trojka near their original price (1 969 Kč / 528 Kč), Banda or Criminal volumes under their shop price), auctions ending soon – with price, site and URL; publisher news (new titles, stock changes); any site that stopped or could not be checked; links to the new file on GitHub and to the Claude page.
+   - **The facts stay exact and complete:** number of listings per category and per site; the most interesting finds – cheapest offer per title, anything clearly below normal price (e.g. Kolosální Conan vol. 1 under ~30 000 Kč, Přístav Země / Zatmění or Trojka near their original price (1 969 Kč / 528 Kč), Banda or Criminal volumes under their shop price), auctions ending soon – with price, site and URL; any site that stopped or could not be checked; links to the new file on GitHub and to the Claude page.
    - The first sentence of the PushNotification is a plain, informative banner (e.g. `⚔️ 18 finds today – Kolosální Conan vol. 1 from 37 000 Kč on Bazoš!`). Keep the e-mail under ~300 words, plain text (no Markdown tables).
 
 ## Daily e-mail

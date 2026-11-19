@@ -13,7 +13,7 @@ Daily search of Czech second-hand sites and shops for five kinds of comics:
 A scheduled Claude task ("Comics scout daily (cloud)") runs every morning at 6:43 Prague time, fully in the cloud – no computer needs to be on. Each run:
 
 1. Searches all sites below with `scout.py`, using the terms in `search-terms.txt`.
-2. Checks the publisher shop **comicscentrum.cz** (mightyboys.cz is no longer checked).
+2. Does not check publisher shops (mightyboys.cz and comicscentrum.cz were removed from the scout).
 3. Builds a fresh file `history/listings-YYYY-MM-DD.txt` with **all findings** (no comparison with earlier days) using `report.py` (kept in the run's workspace; the task uses GitHub read-only and pushes nothing).
 4. Updates the Claude page **"Comics scout – latest findings"** (https://claude.ai/artifact/Ad5jGHU2bTPriSMAjBxNow) with the same findings and the run's timestamp (Prague time).
 5. Sends an HTML report and a push notification, plus a Gmail e-mail "Comics scout – DD/MM/YYYY" with one line per book found (no table).
@@ -34,7 +34,7 @@ The full procedure the task follows is in `SKILL.md`.
 | Antikavion | Antiquarian bookshop (only books with a copy for sale) | ✅ searched |
 | Antikvariaty.cz | Antiquarian bookshop catalogue | ✅ searched (rarely has these titles) |
 | Arkham | Comics bookshop (new + second-hand) | ✅ searched |
-| comicscentrum.cz | Publisher (Kolosální Conan) | ✅ checked |
+| comicscentrum.cz | Publisher (Kolosální Conan) | ⏸ removed from the scout (2026-11-19) |
 | mightyboys.cz | Publisher (Mighty Boys) | ⏸ removed from the scout (2026-11-19) |
 | Aukro (directly) | Auctions | ❌ Cloudflare blocks cloud requests – partly covered via KomiksBazar |
 | ComicsDB Bazar | Community bazaar | ❌ blocks automated access |
